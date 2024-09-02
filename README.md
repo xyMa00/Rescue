@@ -10,13 +10,13 @@ Running Ressac on CUDA is recommended if available.
 
 #### install from PyPI
 
-    pip install Ressac
+    pip install Rescue
 
 #### install latest develop version from GitHub
-    pip install https://github.com/xyMa00/bio_z7.git
+    https://github.com/xyMa00/Rescue.git
 or download and install
 
-	git clone git@github.com:xyMa00/bio_z7.git
+	git clone git@github.com:xyMa00/Rescue.git
 	cd Ressac
 	python setup.py install
     
@@ -37,7 +37,7 @@ You can refer to **epi_h5ad.py** for the whole process.
 
 #### Run 
 
-    Ressac.py -d [input]
+    Rescue.py -d [input]
 
 #### Output
 Output will be saved in the output folder including:
@@ -50,11 +50,11 @@ Output will be saved in the output folder including:
 #### Imputation  
 Get binary imputed data in adata.h5ad file using scanpy **adata.obsm['binary']** with option **--binary** (recommended for saving storage)
 
-    Ressac.py -d [input] --binary  
+    Rescue.py -d [input] --binary  
     
 or get numerical imputed data in adata.h5ad file using scanpy **adata.obsm['imputed']** with option **--impute**
 
-    Ressac.py -d [input] --impute
+    Rescue.py -d [input] --impute
      
 #### Useful options  
 * save results in a specific folder: [-o] or [--outdir] 
@@ -65,15 +65,15 @@ or get numerical imputed data in adata.h5ad file using scanpy **adata.obsm['impu
 #### Help
 Look for more usage of Ressac
 
-	Ressac.py --help 
+	Rescue.py --help 
 
 Use functions in Ressac packages.
 
-	import ressac
-	from ressac import *
-	from ressac.plot import *
-	from ressac.utils import *
+	import rescue
+	from rescue import *
+	from rescue.plot import *
+	from rescue.utils import *
 	
 
 ## Tutorial
-**[Tutorial Forebrain](https://github.com/xyMa00/bio_z7/wiki/Forebrain)**   Run Ressac on dense matrix **Forebrain** dataset (k=8, 2088 cells)
+**[Tutorial Forebrain](https://github.com/xyMa00/Rescue/wiki/Forebrain)**   Run Ressac on dense matrix **Forebrain** dataset (k=8, 2088 cells)
