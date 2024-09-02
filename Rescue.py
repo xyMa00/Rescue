@@ -1,5 +1,5 @@
 """
-# File Name: Ressac.py
+# File Name: Rescue.py
 # Description: Resnet based single-cell ATAC-seq clustering.
     Input: 
         scATAC-seq data
@@ -10,7 +10,7 @@
 """
 
 import argparse
-from ressac import some_function
+from rescue import some_function
 
 # dataPath='adata_train.h5ad'
 
@@ -61,7 +61,7 @@ testPath = 'GSE257541/10000/pbmc0h_1/RNA_data_new_0h_1.h5ad'
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Ressac: Resnet based single-cell ATAC-seq clustering')
+    parser = argparse.ArgumentParser(description='Rescue: Resnet based single-cell ATAC-seq clustering')
     parser.add_argument('--data_list', '-d', type=str, nargs='+', default=dataPath)
     parser.add_argument('--test_list', '-t', type=str, nargs='+', default=testPath)
     # parser.add_argument('--n_centroids', '-k', type=int, help='cluster number', default=40)
