@@ -76,143 +76,16 @@ def simil(file1_path, file2_path, col):
 
 
 if __name__ == "__main__":
-    # file1_path = 'GSE50244/pred/truth_data.txt'
-    # file2_path = 'GSE50244/pred/out_predict_scden.txt'
-    # file2_path = 'GSE50244/pred/prediction_CSx.txt'
-    # file2_path = 'GSE50244/pred/prediction_cmp.txt'
-    # file2_path = 'GSE50244/pred/prediction_music.txt'
-    # file2_path = 'GSE50244/pred/prediction_nnls.txt'
-    # file2_path = 'GSE50244/pred/prediction_res.txt'
-    # file = 'pancreas'
-
-    # file1_path = 'gene_1/pred/truth_data.txt'
-    # # file2_path = 'gene_1/out_predict_scaden.txt'
-    # # file2_path = 'gene_1/prediction_CSx.txt'
-    # # file2_path = 'gene_1/prediction_cmp.txt'
-    # # file2_path = 'gene_1/prediction_music.txt'
-    # # file2_path = 'gene_1/prediction_nnls.txt'
-    # file2_path = 'gene_1/pred/prediction_res.txt'
-    # file = 'simulated'
-
-    # file1_path = 'mouse/pred/truth_data.txt'
-    # # # file2_path = 'mouse/pred/out_predict_scaden.txt'
-    # # # file2_path = 'mouse/pred/prediction_CSx.txt'
-    # # # file2_path = 'mouse/pred/prediction_cmp.txt'
-    # # # file2_path = 'mouse/pred/prediction_music.txt'
-    # # # file2_path = 'mouse/pred/prediction_nnls.txt'
-    # file2_path = 'mouse/pred/prediction_res.txt'
-    # file = 'mouse'
-    #
-    # file1_path = 'LUSC/pred/truth_data.txt'
-    # # # file2_path = 'LUSC/pred/out_predict_scaden.txt'
-    # # # file2_path = 'LUSC/pred/prediction_CSx.txt'
-    # # # file2_path = 'LUSC/pred/prediction_cmp.txt'
-    # file2_path = 'LUSC/pred/prediction_music.txt'
-    # # # file2_path = 'LUSC/pred/prediction_nnls.txt'
-    # file2_path = 'LUSC/pred/prediction_res.txt'
-
-    # file1_path = 'LUSC_IA3_BC3_10/pred/truth_data.txt'
-    # file2_path = 'LUSC_IA3_BC3_10/pred/out_predict_scaden.txt'
-    # # file2_path = 'LUSC_IA3_BC3_10/pred/prediction_CSx.txt'
-    # # file2_path = 'LUSC_IA3_BC3_10/pred/prediction_cmp.txt'
-    # file2_path = 'LUSC_IA3_BC3_10/pred/prediction_music.txt'
-    # file2_path = 'LUSC_IA3_BC3_10/pred/prediction_nnls.txt'
-    # file2_path = 'LUSC_IA3_BC3_10/pred/prediction_res.txt'
-
-    # file1_path = 'LUSC_IA3_BC8/pred/truth_data.txt'
-    # # file2_path = 'LUSC_IA3_BC8/pred/out_predict_scaden.txt'
-    # # file2_path = 'LUSC_IA3_BC8/pred/prediction_CSx.txt'
-    # # file2_path = 'LUSC_IA3_BC8/pred/prediction_cmp.txt'
-    # file2_path = 'LUSC_IA3_BC8/pred/prediction_music.txt'
-    # file2_path = 'LUSC_IA3_BC8/pred/prediction_nnls.txt'
-    # file2_path = 'LUSC_IA3_BC8/pred/prediction_res.txt'
-    # file = 'LUSC'
-
-    # file1_path = 'seurat_pbmc_5000/pred/truth_data.txt'
-    # # # file2_path = 'seurat_pbmc_2000/pred/out_predict_scaden.txt'
-    # file2_path = 'seurat_pbmc_5000/pred/prediction_CSx.txt'
-    # # # file2_path = 'seurat_pbmc_2000/pred/prediction_cmp.txt'
-    # # file2_path = 'seurat_pbmc_5000/pred/prediction_music.txt'
-    # # # file2_path = 'seurat_pbmc_2000/pred/prediction_nnls.txt'
-    # # file2_path = 'seurat_pbmc_5000/pred/prediction_res.txt'
-    # # file='pbmc'
-
-    # file1_path = 'LUSC_10_types/LUSC_IA3_BC8_10/pred/truth_data.txt'
-    # file2_path = 'LUSC_10_types/LUSC_IA3_BC8_10/pred/out_predict_scaden.txt'
-    # file = 'sampling_10000'
-
-    # file1_path = 'hscr/all_2_seurat_object_common_8/common_8_2/Z_S_HSCR3_dilated_2500_2/pred/truth_data.txt'
-    # # file2_path = 'hscr/all_2_seurat_object_common_8/common_8_2/Z_S_HSCR3_dilated_2500_2/pred/out_predict_scaden.txt'
-    # file2_path = 'hscr/all_2_seurat_object_common_8/common_8_2/Z_S_HSCR3_dilated_2500_2/pred/prediction_CSx.txt'
-    # # # file2_path = 'hscr/all_2_seurat_object_common_8/common_8_2/Z_S_HSCR3_dilated_2500_2/pred/prediction_cmp.txt'
-    # # file2_path = 'hscr/all_2_seurat_object_common_8/common_8_2/Z_S_HSCR3_dilated_2500_2/pred/prediction_music.txt'
-    # # file2_path = 'hscr/all_2_seurat_object_common_8/common_8_2/Z_S_HSCR3_dilated_2500_2/pred/prediction_nnls.txt'
-    # # file2_path = 'hscr/all_2_seurat_object_common_8/common_8_2/Z_S_HSCR3_dilated_2500_2/pred/prediction_res.txt'
-    # file='hscr/all_2_seurat_object_common_8/common_8_2/Z_S_HSCR3_dilated_2500_2'
-
-    # file1_path = 'hscr/all_2_seurat_object_common_8/common_8_2/Z_S_HSCR2_dilated_2500_2/pred/truth_data.txt'
-    # # file2_path = 'hscr/all_2_seurat_object_common_8/common_8_2/Z_S_HSCR2_dilated_2500_2/pred/out_predict_scaden.txt'
-    # file2_path = 'hscr/all_2_seurat_object_common_8/common_8_2/Z_S_HSCR2_dilated_2500_2/pred/prediction_CSx.txt'
-    # # # file2_path = 'hscr/all_2_seurat_object_common_8/common_8_2/Z_S_HSCR2_dilated_2500_2/pred/prediction_cmp.txt'
-    # # file2_path = 'hscr/all_2_seurat_object_common_8/common_8_2/Z_S_HSCR2_dilated_2500_2/pred/prediction_music.txt'
-    # # file2_path = 'hscr/all_2_seurat_object_common_8/common_8_2/Z_S_HSCR2_dilated_2500_2/pred/prediction_nnls.txt'
-    # # file2_path = 'hscr/all_2_seurat_object_common_8/common_8_2/Z_S_HSCR2_dilated_2500_2/pred/prediction_res.txt'
-    # file = 'hscr/all_2_seurat_object_common_8/common_8_2/Z_S_HSCR2_dilated_2500_2'
-
-    # file1_path = 'hscr/all_2_seurat_object_common_8/common_8_2/Z_S_HSCR2_dilated_2500_2/unknow_type/truth_data.txt'
-    # # file2_path = 'hscr/all_2_seurat_object_common_8/common_8_2/Z_S_HSCR2_dilated_2500_2/unknow_type/out_predict_scaden.txt'
-    # # file2_path = 'hscr/all_2_seurat_object_common_8/common_8_2/Z_S_HSCR2_dilated_2500_2/unknow_type/prediction_CSx.txt'
-    # # # file2_path = 'hscr/all_2_seurat_object_common_8/common_8_2/Z_S_HSCR2_dilated_2500_2/pred/prediction_cmp.txt'
-    # # file2_path = 'hscr/all_2_seurat_object_common_8/common_8_2/Z_S_HSCR2_dilated_2500_2/unknow_type/prediction_music.txt'
-    # # file2_path = 'hscr/all_2_seurat_object_common_8/common_8_2/Z_S_HSCR2_dilated_2500_2/unknow_type/prediction_nnls.txt'
-    # file2_path = 'hscr/all_2_seurat_object_common_8/common_8_2/Z_S_HSCR2_dilated_2500_2/unknow_type/prediction_res.txt'
-    # file = 'hscr/all_2_seurat_object_common_8/common_8_2/Z_S_HSCR2_dilated_2500_2'
-
-    # file1_path = 'hscr/all_2_seurat_object_common_8/common_8_2/Z_S_HSCR3_dilated_2500_2/unknow_type/truth_data.txt'
-    # # file2_path = 'hscr/all_2_seurat_object_common_8/common_8_2/Z_S_HSCR3_dilated_2500_2/unknow_type/out_predict_scaden.txt'
-    # # file2_path = 'hscr/all_2_seurat_object_common_8/common_8_2/Z_S_HSCR3_dilated_2500_2/unknow_type/prediction_CSx.txt'
-    # # # file2_path = 'hscr/all_2_seurat_object_common_8/common_8_2/Z_S_HSCR3_dilated_2500_2/pred/prediction_cmp.txt'
-    # # file2_path = 'hscr/all_2_seurat_object_common_8/common_8_2/Z_S_HSCR3_dilated_2500_2/unknow_type/prediction_music.txt'
-    # # file2_path = 'hscr/all_2_seurat_object_common_8/common_8_2/Z_S_HSCR3_dilated_2500_2/unknow_type/prediction_nnls.txt'
-    # file2_path = 'hscr/all_2_seurat_object_common_8/common_8_2/Z_S_HSCR3_dilated_2500_2/unknow_type/prediction_res.txt'
-    # file = 'hscr/all_2_seurat_object_common_8/common_8_2/Z_S_HSCR3_dilated_2500_2'
-
-    # file1_path = 'LUSC_IA3_BC3_10/20000/need/train_dataset/pred/truth_data.txt'
-    # file2_path = 'LUSC_IA3_BC3_10/20000/need/train_dataset/pred/out_predict_scaden.txt'
-    # # file2_path = 'LUSC_IA3_BC3_10/20000/need/train_dataset/pred/prediction_res_8000.txt'
-    # # # file2_path = 'LUSC_IA3_BC3_10/20000/need/train_dataset/pred/prediction_res_6400.txt'
-    # # # file2_path = 'LUSC_IA3_BC3_10/20000/need/train_dataset/pred/prediction_res_4800.txt'
-    # # # file2_path = 'LUSC_IA3_BC3_10/20000/need/train_dataset/pred/prediction_res_3200.txt'
-    # # # file2_path = 'LUSC_IA3_BC3_10/20000/need/train_dataset/pred/prediction_res_1600.txt'
-    # # # file2_path = 'LUSC_IA3_BC3_10/20000/need/train_dataset/pred/prediction_res_800.txt'
-    # # # file2_path = 'LUSC_IA3_BC3_10/20000/need/train_dataset/pred/prediction_res_400.txt'
-    # # # file2_path = 'LUSC_IA3_BC3_10/20000/need/train_dataset/pred/prediction_res_200.txt'
     # file = 'LUSC_IA3_BC3_10/20000/need/train_dataset'
 
     # file = 'hscr/all_2_seurat_object_common_8/20000/train_dataset/pred'
-    # file1_path = file+'/truth_data.txt'
-    # file2_path = file+'/out_predict_scaden.txt'
-    # # file2_path = file+'/prediction_CSx.txt'
-    # # file2_path = file+'/prediction_music.txt'
-    # # file2_path = file+'/prediction_nnls.txt'
-    # # file2_path = file+'/prediction_res_8000.txt'
-    # # file2_path = file+'/prediction_res_6400.txt'
-    # # file2_path = file+'/prediction_res_4800.txt'
-    # # file2_path = file + '/prediction_res_4000.txt'
-    # # file2_path = file+'/prediction_res_3200.txt'
-    # # file2_path = file+'/prediction_res_1600.txt'
-    # # file2_path = file+'/prediction_res_800.txt'
-    # # file2_path = file+'/prediction_res_400.txt'
-    # # file2_path = file+'/prediction_res_200.txt'
-    # # file2_path = file + '/prediction_res_200_1.txt'
-    # # file2_path = file + '/prediction_res_200_2.txt'
 
     # file = 'LUSC_IA3_BC3_10/rare/pred'
 
     # file = 'LUSC_IA3_BC3_10/20000/need/train_dataset/pred/pre_LUSC_IA3_BC8_10_types_17956'
     # file = 'LUSC_IA3_BC3_10/property/pred'
     # file = 'LUSC_IA3_BC3_10/2500/4000/pred'
-    file = 'LUSC_IA3_BC3_10/20000/pred'
+    # file = 'LUSC_IA3_BC3_10/20000/pred'
 
     # file = 'LUSC_IA3_BC8_10/property/pred'
     # file = 'LUSC_IA3_BC8_10/property/others_pred_LUSC_IA3_BC8_10'
@@ -225,13 +98,13 @@ if __name__ == "__main__":
     # file = 'hscr/all_2_seurat_object_common_8/Z_S_HSCR3_dilated_2500/need/pred'
     # filename = 'HSCR'
 
-    # file = 'LUSC_IA3_BC8/2500/4000/pred'
+    file = 'LUSC_IA3_BC3_10/2500/4000/pred'
     # file = 'LUSC_IA3_BC8/pred'
     # filename = 'LUSC'
 
     # file = 'mouse/4000/pred'
     # filename = 'Mouse'
-    file = 'GSE257541/10000/pbmc48h/4000/pred'
+    # file = 'GSE257541/10000/pbmc48h/4000/pred'
 
     # file = 'LUSC_10_types/marge_20000/train_dataset/pred'
     # file = 'seurat_pbmc/4000/pred'
@@ -240,7 +113,7 @@ if __name__ == "__main__":
     # file1_path = file + '/truth_data_7.txt'
     # file1_path = file + '/truth_data_7_all.txt'
     # file1_path = file + '/truth_data_new.txt'
-    file2_path = file+'/out_predict_scaden.txt'
+    # file2_path = file+'/out_predict_scaden.txt'
     # file2_path = file + '/out_predict_scaden_7.txt'
     # file2_path = file + '/out_predict_scaden_7_all.txt'
     # file2_path = file + '/prediction_CSx.txt'
@@ -250,7 +123,7 @@ if __name__ == "__main__":
     # file2_path = file+'/prediction_res_8000.txt'
     # file2_path = file+'/prediction_res_6400.txt'
     # file2_path = file+'/prediction_res_4800.txt'
-    # file2_path = file + '/prediction_res_4000.txt'
+    file2_path = file + '/prediction_res_4000.txt'
     # file2_path = file + '/prediction_res_4000_7.txt'
     # file2_path = file + '/prediction_res_4000_7_all.txt'
     # file2_path = file + '/prediction_res_4000_new.txt'
@@ -271,11 +144,11 @@ if __name__ == "__main__":
     # #
     # # # 提取第2到第8列
     # columns_to_use = df1.columns[1:5]
-    columns_to_use = df1.columns[1:7]
+    # columns_to_use = df1.columns[1:7]
     # columns_to_use = df1.columns[1:14]
     # columns_to_use = df1.columns[1:23]
     # columns_to_use = df1.columns[1:10]
-    # columns_to_use = df1.columns[1:11]
+    columns_to_use = df1.columns[1:11]
     # columns_to_use = df1.columns[1:9]
     # columns_to_use = df1.columns[8:9]
     # columns_to_use = df1.columns[1:5]
@@ -335,7 +208,7 @@ if __name__ == "__main__":
     # fig, axes = plt.subplots(nrows=2, ncols=4, figsize=(20, 10))
     # # fig, axes = plt.subplots(nrows=1, ncols=6, figsize=(30, 5))
     # fig, axes = plt.subplots(nrows=2, ncols=3, figsize=(15, 10))
-    fig, axes = plt.subplots(nrows=2, ncols=5, figsize=(25, 10))
+    # fig, axes = plt.subplots(nrows=2, ncols=5, figsize=(25, 10))
     # fig, axes = plt.subplots(nrows=3, ncols=3, figsize=(15, 15))
     # # fig, axes = plt.subplots(nrows=1, ncols=4, figsize=(20, 5))
     #
@@ -366,51 +239,51 @@ if __name__ == "__main__":
     # # # # # ------------------------------------------------------------
     # 定义颜色列表
     # colors = ['orange', 'cyan', 'red', 'purple', 'HotPink', 'MediumOrchid', 'blue', 'green', 'Tomato']
-    sim_val=[]
-    for i, col in enumerate(columns_to_use):
-        x = data1[col].values
-        y = data2[col].values
-        # ccc = lins_ccc(x, y)
-        # ccc = dice_coefficient(x, y)
-        ccc = fidelity_similarity(x, y)
-        # # # 计算余弦相似度
-        # ccc = python_cos(x, y)
-        sim_val.append(ccc)
-
-
-        # 选择子图
-        # ax = axes[i // 3, i % 3]
-        ax = axes[i // 5, i % 5]
-        # ax = axes[i % 4]
-        # ax = axes[i // 4, i % 4]
-        # ax = axes
-
-        # 使用不同颜色绘制散点图
-        # ax.scatter(x, y, color=colors[i % len(colors)], alpha=0.5)
-        # ax.scatter(x, y, color=colors[i % len(colors)], s=100, alpha=0.5)
-        ax.scatter(x, y, s=100, alpha=0.5)
-        # ax.scatter(x, y, s=100, alpha=0.5)
-        # ax.set_title(f"{col}\nLin's CCC: {ccc:.2f}")
-        # ax.set_xlabel('Truth')
-        # ax.set_ylabel('Prediction')
-        # ax.set_title(f"{col}\nCosine Similarity: {ccc:.2f}", fontsize=25)
-        ax.set_title(f"{col}\nDice: {ccc:.2f}", fontsize=25)
-        # ['Scaden', 'CSx', 'MuSiC', 'NNLS', 'Rescue']
-        ax.set_xlabel('Truth\nRescue', fontsize=24)
-        ax.set_ylabel('Prediction', fontsize=24)
-        # 调整刻度字体大小
-        ax.tick_params(axis='both', which='major', labelsize=24)
-
-    print(sim_val)
-
-    # 调整布局
-    plt.tight_layout()
-
-    # 保存并显示图像
-    plt.savefig(file+'/plot_results/scatter_plots.png')
-    # plt.savefig(file + '/plot_results/unk_scatter_plots.png')
-    # plt.savefig('seurat_pbmc_2000/scatter_plots.png')
-    plt.show()
+    # sim_val=[]
+    # for i, col in enumerate(columns_to_use):
+    #     x = data1[col].values
+    #     y = data2[col].values
+    #     # ccc = lins_ccc(x, y)
+    #     # ccc = dice_coefficient(x, y)
+    #     ccc = fidelity_similarity(x, y)
+    #     # # # 计算余弦相似度
+    #     # ccc = python_cos(x, y)
+    #     sim_val.append(ccc)
+    #
+    #
+    #     # 选择子图
+    #     # ax = axes[i // 3, i % 3]
+    #     ax = axes[i // 5, i % 5]
+    #     # ax = axes[i % 4]
+    #     # ax = axes[i // 4, i % 4]
+    #     # ax = axes
+    #
+    #     # 使用不同颜色绘制散点图
+    #     # ax.scatter(x, y, color=colors[i % len(colors)], alpha=0.5)
+    #     # ax.scatter(x, y, color=colors[i % len(colors)], s=100, alpha=0.5)
+    #     ax.scatter(x, y, s=100, alpha=0.5)
+    #     # ax.scatter(x, y, s=100, alpha=0.5)
+    #     # ax.set_title(f"{col}\nLin's CCC: {ccc:.2f}")
+    #     # ax.set_xlabel('Truth')
+    #     # ax.set_ylabel('Prediction')
+    #     # ax.set_title(f"{col}\nCosine Similarity: {ccc:.2f}", fontsize=25)
+    #     ax.set_title(f"{col}\nDice: {ccc:.2f}", fontsize=25)
+    #     # ['Scaden', 'CSx', 'MuSiC', 'NNLS', 'Rescue']
+    #     ax.set_xlabel('Truth\nRescue', fontsize=24)
+    #     ax.set_ylabel('Prediction', fontsize=24)
+    #     # 调整刻度字体大小
+    #     ax.tick_params(axis='both', which='major', labelsize=24)
+    #
+    # print(sim_val)
+    #
+    # # 调整布局
+    # plt.tight_layout()
+    #
+    # # 保存并显示图像
+    # plt.savefig(file+'/plot_results/scatter_plots.png')
+    # # plt.savefig(file + '/plot_results/unk_scatter_plots.png')
+    # # plt.savefig('seurat_pbmc_2000/scatter_plots.png')
+    # plt.show()
     # ------------------------------------------------------------------
     # # 创建用于存储所有数据的 DataFrame
     # rmse_combined = pd.DataFrame()
@@ -449,45 +322,45 @@ if __name__ == "__main__":
     # plt.show()
     # ------------------------------------------------------------------
     # 创建用于存储所有数据的 DataFrame
-    # rmse_combined = pd.DataFrame()
-    #
-    # for col in columns_to_use:
-    #     x = data1[col].values
-    #     y = data2[col].values
-    #
-    #     # 计算每对 x 和 y 值之间的 RMSE
-    #     rmses = np.sqrt((x - y) ** 2)
-    #
-    #     # 创建临时 DataFrame，包含当前列所有的 RMSE 值
-    #     temp_df = pd.DataFrame({
-    #         'RMSE': rmses,
-    #         'Category': col
-    #     })
-    #
-    #     # 将临时 DataFrame 添加到组合 DataFrame 中
-    #     rmse_combined = pd.concat([rmse_combined, temp_df], axis=0)
-    #
-    # # 设置图形大小
-    # plt.figure(figsize=(12, 5))
-    #
-    # # 使用 Seaborn 绘制小提琴图
-    # sns.violinplot(x='Category', y='RMSE', data=rmse_combined, palette='Set3')
-    #
-    # # 设置标签和标题
-    # plt.xlabel('Category', fontsize=20)
-    # plt.ylabel('RMSE', fontsize=20)
-    # # plt.title('Violin plots of RMSE for Each Category', fontsize=25)
-    #
-    # # plt.xticks(fontsize=20)
-    # plt.xticks(rotation=30, fontsize=20)
-    # plt.yticks(fontsize=20)
-    #
-    # # 调整布局
-    # plt.tight_layout()
-    #
-    # # 保存并显示图像
-    # plt.savefig(file+'/plot_results/rmse_violinplots.png')
-    # plt.show()
+    rmse_combined = pd.DataFrame()
+
+    for col in columns_to_use:
+        x = data1[col].values
+        y = data2[col].values
+
+        # 计算每对 x 和 y 值之间的 RMSE
+        rmses = np.sqrt((x - y) ** 2)
+
+        # 创建临时 DataFrame，包含当前列所有的 RMSE 值
+        temp_df = pd.DataFrame({
+            'RMSE': rmses,
+            'Category': col
+        })
+
+        # 将临时 DataFrame 添加到组合 DataFrame 中
+        rmse_combined = pd.concat([rmse_combined, temp_df], axis=0)
+
+    # 设置图形大小
+    plt.figure(figsize=(12, 5))
+
+    # 使用 Seaborn 绘制小提琴图
+    sns.violinplot(x='Category', y='RMSE', data=rmse_combined, palette='Set3')
+
+    # 设置标签和标题
+    plt.xlabel('Category', fontsize=20)
+    plt.ylabel('RMSE', fontsize=20)
+    # plt.title('Violin plots of RMSE for Each Category', fontsize=25)
+
+    # plt.xticks(fontsize=20)
+    plt.xticks(rotation=30, fontsize=20)
+    plt.yticks(fontsize=20)
+
+    # 调整布局
+    plt.tight_layout()
+
+    # 保存并显示图像
+    plt.savefig(file+'/plot_results/rmse_violinplots.png')
+    plt.show()
     # ------------------------------------------------------------------
     #
     # 绘制散点图
@@ -550,147 +423,11 @@ if __name__ == "__main__":
     # # # 显示图形
     # # plt.show()
     # # # # # ----------------------------------------------------
-    # file0_path = 'GSE50244/pred/truth_data.txt'
-    # file1_path = 'GSE50244/pred/out_predict_scden.txt'
-    # file2_path = 'GSE50244/pred/prediction_CSx.txt'
-    # file3_path = 'GSE50244/pred/prediction_cmp.txt'
-    # file4_path = 'GSE50244/pred/prediction_music.txt'
-    # file5_path = 'GSE50244/pred/prediction_nnls.txt'
-    # file6_path = 'GSE50244/pred/prediction_res.txt'
-    # file = 'GSE50244'
-    # lie = 7
-
-    # file0_path = 'gene_1/pred/truth_data.txt'
-    # file1_path = 'gene_1/pred/out_predict_scaden.txt'
-    # # file2_path = 'gene_1/pred/prediction_CSx.txt'
-    # file3_path = 'gene_1/pred/prediction_cmp.txt'
-    # file4_path = 'gene_1/pred/prediction_music.txt'
-    # file5_path = 'gene_1/pred/prediction_nnls.txt'
-    # file6_path = 'gene_1/pred/prediction_res.txt'
-    # file = 'gene_1'
-    # lie = 5
-
-    # file0_path = 'mouse/pred/truth_data.txt'
-    # file1_path = 'mouse/pred/out_predict_scaden.txt'
-    # file2_path = 'mouse/pred/prediction_CSx.txt'
-    # file3_path = 'mouse/pred/prediction_cmp.txt'
-    # file4_path = 'mouse/pred/prediction_music.txt'
-    # file5_path = 'mouse/pred/prediction_nnls.txt'
-    # file6_path = 'mouse/pred/prediction_res.txt'
-    # file = 'mouse'
-    # lie = 14
-
-    # file0_path = 'seurat_pbmc/pred/truth_data.txt'
-    # file1_path = 'seurat_pbmc/pred/out_predict_scaden.txt'
-    # file2_path = 'seurat_pbmc/pred/prediction_CSx.txt'
-    # file3_path = 'seurat_pbmc/pred/prediction_cmp.txt'
-    # file4_path = 'seurat_pbmc/pred/prediction_music.txt'
-    # file5_path = 'seurat_pbmc/pred/prediction_nnls.txt'
-    # file6_path = 'seurat_pbmc/pred/prediction_res.txt'
-    # file = 'seurat_pbmc'
-    # lie = 10
-
-    # file0_path = 'seurat_pbmc_2000/pred/truth_data.txt'
-    # file1_path = 'seurat_pbmc_2000/pred/out_predict_scaden.txt'
-    # file2_path = 'seurat_pbmc_2000/pred/prediction_CSx.txt'
-    # file3_path = 'seurat_pbmc_2000/pred/prediction_cmp.txt'
-    # file4_path = 'seurat_pbmc_2000/pred/prediction_music.txt'
-    # file5_path = 'seurat_pbmc_2000/pred/prediction_nnls.txt'
-    # file6_path = 'seurat_pbmc_2000/pred/prediction_res.txt'
-    # file = 'seurat_pbmc_2000'
-    # lie = 10
-
-    # file0_path = 'seurat_pbmc_5000/pred/truth_data.txt'
-    # file1_path = 'seurat_pbmc_5000/pred/out_predict_scaden.txt'
-    # file2_path = 'seurat_pbmc_5000/pred/prediction_CSx.txt'
-    # file3_path = 'seurat_pbmc_5000/pred/prediction_cmp.txt'
-    # file4_path = 'seurat_pbmc_5000/pred/prediction_music.txt'
-    # file5_path = 'seurat_pbmc_5000/pred/prediction_nnls.txt'
-    # file6_path = 'seurat_pbmc_5000/pred/prediction_res.txt'
-    # file = 'seurat_pbmc_5000'
-    # lie = 10
-
-    # file0_path = 'LUSC_10_types/LUSC_IA3_BC3_10/pred/truth_data.txt'
-    # file1_path = 'LUSC_10_types/LUSC_IA3_BC3_10/pred/out_predict_scaden.txt'
-    # file2_path = 'LUSC_10_types/LUSC_IA3_BC3_10/pred/prediction_CSx.txt'
-    # file3_path = 'LUSC_10_types/LUSC_IA3_BC3_10/pred/prediction_cmp.txt'
-    # file4_path = 'LUSC_10_types/LUSC_IA3_BC3_10/pred/prediction_music.txt'
-    # file5_path = 'LUSC_10_types/LUSC_IA3_BC3_10/pred/prediction_nnls.txt'
-    # file6_path = 'LUSC_10_types/LUSC_IA3_BC3_10/pred/prediction_res.txt'
-    # file = 'LUSC_10_types/LUSC_IA3_BC3_10'
-    # lie = 11
-
-    # file0_path = 'LUSC_10_types/LUSC_IA3_BC8_10/pred/truth_data.txt'
-    # file1_path = 'LUSC_10_types/LUSC_IA3_BC8_10/pred/out_predict_scaden.txt'
-    # file2_path = 'LUSC_10_types/LUSC_IA3_BC8_10/pred/prediction_CSx.txt'
-    # file3_path = 'LUSC_10_types/LUSC_IA3_BC8_10/pred/prediction_cmp.txt'
-    # file4_path = 'LUSC_10_types/LUSC_IA3_BC8_10/pred/prediction_music.txt'
-    # file5_path = 'LUSC_10_types/LUSC_IA3_BC8_10/pred/prediction_nnls.txt'
-    # file6_path = 'LUSC_10_types/LUSC_IA3_BC8_10/pred/prediction_res.txt'
-    # file = 'LUSC_10_types/LUSC_IA3_BC8_10'
-    # lie = 11
-
-    # file0_path = 'hscr/all_2_seurat_object_common_8/Z_S_HSCR3_dilated_2500/pred/truth_data.txt'
-    # file1_path = 'hscr/all_2_seurat_object_common_8/Z_S_HSCR3_dilated_2500/pred/out_predict_scaden.txt'
-    # file2_path = 'hscr/all_2_seurat_object_common_8/Z_S_HSCR3_dilated_2500/pred/prediction_CSx.txt'
-    # # file3_path = 'hscr/all_2_seurat_object_common_8/Z_S_HSCR3_dilated_2500/pred/prediction_cmp.txt'
-    # file4_path = 'hscr/all_2_seurat_object_common_8/Z_S_HSCR3_dilated_2500/pred/prediction_music.txt'
-    # file5_path = 'hscr/all_2_seurat_object_common_8/Z_S_HSCR3_dilated_2500/pred/prediction_nnls.txt'
-    # file6_path = 'hscr/all_2_seurat_object_common_8/Z_S_HSCR3_dilated_2500/pred/prediction_res.txt'
-    # file = 'hscr/all_2_seurat_object_common_8/Z_S_HSCR3_dilated_2500'
-    # lie = 9
-
-    # file0_path = 'hscr/all_2_seurat_object_common_8/Z_S_HSCR2_dilated_2500/pred/truth_data.txt'
-    # file1_path = 'hscr/all_2_seurat_object_common_8/Z_S_HSCR2_dilated_2500/pred/out_predict_scaden.txt'
-    # file2_path = 'hscr/all_2_seurat_object_common_8/Z_S_HSCR2_dilated_2500/pred/prediction_CSx.txt'
-    # # file3_path = 'hscr/all_2_seurat_object_common_8/Z_S_HSCR2_dilated_2500/pred/prediction_cmp.txt'
-    # file4_path = 'hscr/all_2_seurat_object_common_8/Z_S_HSCR2_dilated_2500/pred/prediction_music.txt'
-    # file5_path = 'hscr/all_2_seurat_object_common_8/Z_S_HSCR2_dilated_2500/pred/prediction_nnls.txt'
-    # file6_path = 'hscr/all_2_seurat_object_common_8/Z_S_HSCR2_dilated_2500/pred/prediction_res.txt'
-    # file = 'hscr/all_2_seurat_object_common_8/Z_S_HSCR2_dilated_2500'
-    # lie = 9
-
-    # file0_path = 'hscr/all_2_seurat_object_common_8/common_8_2/Z_S_HSCR2_dilated_2500_2/pred/truth_data.txt'
-    # file1_path = 'hscr/all_2_seurat_object_common_8/common_8_2/Z_S_HSCR2_dilated_2500_2/pred/out_predict_scaden.txt'
-    # file2_path = 'hscr/all_2_seurat_object_common_8/common_8_2/Z_S_HSCR2_dilated_2500_2/pred/prediction_CSx.txt'
-    # # # file3_path = 'hscr/all_2_seurat_object_common_8/common_8_2/Z_S_HSCR2_dilated_2500_2/pred/prediction_cmp.txt'
-    # file4_path = 'hscr/all_2_seurat_object_common_8/common_8_2/Z_S_HSCR2_dilated_2500_2/pred/prediction_music.txt'
-    # file5_path = 'hscr/all_2_seurat_object_common_8/common_8_2/Z_S_HSCR2_dilated_2500_2/pred/prediction_nnls.txt'
-    # file6_path = 'hscr/all_2_seurat_object_common_8/common_8_2/Z_S_HSCR2_dilated_2500_2/pred/prediction_res.txt'
-    # file = 'hscr/all_2_seurat_object_common_8/common_8_2/Z_S_HSCR2_dilated_2500_2'
-    # lie = 2
-
-    # file0_path = 'hscr/all_2_seurat_object_common_8/common_8_2/Z_S_HSCR2_dilated_2500_2/unknow_type/truth_data.txt'
-    # file1_path = 'hscr/all_2_seurat_object_common_8/common_8_2/Z_S_HSCR2_dilated_2500_2/unknow_type/out_predict_scaden.txt'
-    # file2_path = 'hscr/all_2_seurat_object_common_8/common_8_2/Z_S_HSCR2_dilated_2500_2/unknow_type/prediction_CSx.txt'
-    # # # file3_path = 'hscr/all_2_seurat_object_common_8/common_8_2/Z_S_HSCR2_dilated_2500_2/pred/prediction_cmp.txt'
-    # file4_path = 'hscr/all_2_seurat_object_common_8/common_8_2/Z_S_HSCR2_dilated_2500_2/unknow_type/prediction_music.txt'
-    # file5_path = 'hscr/all_2_seurat_object_common_8/common_8_2/Z_S_HSCR2_dilated_2500_2/unknow_type/prediction_nnls.txt'
-    # file6_path = 'hscr/all_2_seurat_object_common_8/common_8_2/Z_S_HSCR2_dilated_2500_2/unknow_type/prediction_res.txt'
-    # file = 'hscr/all_2_seurat_object_common_8/common_8_2/Z_S_HSCR2_dilated_2500_2'
-    # lie = 2
-
     # file = 'LUSC_IA3_BC8_10/property/others_pred_LUSC_IA3_BC8_10'
-    # file0_path = file + '/truth_data.txt'
-    # file1_path = file + '/out_predict_scaden.txt'
-    # file2_path = file + '/prediction_CSx.txt'
-    # # file3_path = file + '/prediction_cmp.txt'
-    # file4_path = file+'/prediction_music.txt'
-    # file5_path = file+'/prediction_nnls.txt'
-    # file6_path = file + '/prediction_res_4000.txt'
-    # lie = 11
-
     # file = 'LUSC_IA3_BC3_10/property/others_pred_LUSC_IA3_BC3_10'
-    # file0_path = file + '/truth_data.txt'
-    # file1_path = file + '/out_predict_scaden.txt'
-    # file2_path = file + '/prediction_CSx.txt'
-    # file3_path = file + '/prediction_cmp.txt'
-    # file4_path = file + '/prediction_music.txt'
-    # file5_path = file + '/prediction_nnls.txt'
-    # file6_path = file + '/prediction_res_4000.txt'
-    # lie = 11
     file = 'LUSC_IA3_BC3_10/20000/pred'
     # file = 'hscr/all_2_seurat_object_common_8/Z_S_HSCR3_dilated_2500/need/pred'
+
     file0_path = file + '/truth_data.txt'
     file1_path = file + '/out_predict_scaden.txt'
     file2_path = file + '/prediction_CSx.txt'

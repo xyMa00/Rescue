@@ -6,8 +6,9 @@ import scipy
 from scipy.sparse import issparse
 from glob import glob
 from marge_h5ad import getFractions
+import matplotlib.pyplot as plt
 
-DATA_PATH = os.path.expanduser("~")+'/.scalex/'
+DATA_PATH = os.path.expanduser("~")+'/.rescue/'
 
 
 def read_mtx(path):
@@ -68,8 +69,8 @@ def load_file(path):
 
 
 if __name__ == "__main__":
-    # # file_path = 'E-MTAB/10000/HP1507101/'
-    # # in_Path = file_path + 'RNA_data_7_10000_HP1507101.txt'
+    # file_path = 'E-MTAB/10000/HP1507101/'
+    # in_Path = file_path + 'RNA_data_7_10000_HP1507101.txt'
     # file_path = 'GSE257541/10000/pbmc0h/'
     # in_Path = file_path + 'RNA_data_new_0h_2.txt'
     # new_h5ad = load_file(in_Path)
@@ -98,8 +99,7 @@ if __name__ == "__main__":
     # print(f"结果已保存")
 
     # -----------------------------------------绘制散点图-----------------------------
-    import pandas as pd
-    import matplotlib.pyplot as plt
+
 
     # file = 'E-MTAB/10000/all_7/pred'
     file = 'GSE257541/10000/pbmc48h/4000/pred'
