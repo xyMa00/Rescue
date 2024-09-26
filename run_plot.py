@@ -98,7 +98,7 @@ if __name__ == "__main__":
     # file = 'hscr/all_2_seurat_object_common_8/Z_S_HSCR3_dilated_2500/need/pred'
     # filename = 'HSCR'
 
-    file = 'LUSC_IA3_BC3_10/2500/4000/pred'
+    file = 'LUSC_IA3_BC3_10/2500/pred'
     # file = 'LUSC_IA3_BC8/pred'
     # filename = 'LUSC'
 
@@ -321,68 +321,68 @@ if __name__ == "__main__":
     # plt.savefig(file+'/plot_results/rmse_boxplots.png')
     # plt.show()
     # ------------------------------------------------------------------
-    # 创建用于存储所有数据的 DataFrame
-    rmse_combined = pd.DataFrame()
-
-    for col in columns_to_use:
-        x = data1[col].values
-        y = data2[col].values
-
-        # 计算每对 x 和 y 值之间的 RMSE
-        rmses = np.sqrt((x - y) ** 2)
-
-        # 创建临时 DataFrame，包含当前列所有的 RMSE 值
-        temp_df = pd.DataFrame({
-            'RMSE': rmses,
-            'Category': col
-        })
-
-        # 将临时 DataFrame 添加到组合 DataFrame 中
-        rmse_combined = pd.concat([rmse_combined, temp_df], axis=0)
-
-    # 设置图形大小
-    plt.figure(figsize=(12, 5))
-
-    # 使用 Seaborn 绘制小提琴图
-    sns.violinplot(x='Category', y='RMSE', data=rmse_combined, palette='Set3')
-
-    # 设置标签和标题
-    plt.xlabel('Category', fontsize=20)
-    plt.ylabel('RMSE', fontsize=20)
-    # plt.title('Violin plots of RMSE for Each Category', fontsize=25)
-
-    # plt.xticks(fontsize=20)
-    plt.xticks(rotation=30, fontsize=20)
-    plt.yticks(fontsize=20)
-
-    # 调整布局
-    plt.tight_layout()
-
-    # 保存并显示图像
-    plt.savefig(file+'/plot_results/rmse_violinplots.png')
-    plt.show()
+    # # 创建用于存储所有数据的 DataFrame
+    # rmse_combined = pd.DataFrame()
+    #
+    # for col in columns_to_use:
+    #     x = data1[col].values
+    #     y = data2[col].values
+    #
+    #     # 计算每对 x 和 y 值之间的 RMSE
+    #     rmses = np.sqrt((x - y) ** 2)
+    #
+    #     # 创建临时 DataFrame，包含当前列所有的 RMSE 值
+    #     temp_df = pd.DataFrame({
+    #         'RMSE': rmses,
+    #         'Category': col
+    #     })
+    #
+    #     # 将临时 DataFrame 添加到组合 DataFrame 中
+    #     rmse_combined = pd.concat([rmse_combined, temp_df], axis=0)
+    #
+    # # 设置图形大小
+    # plt.figure(figsize=(12, 5))
+    #
+    # # 使用 Seaborn 绘制小提琴图
+    # sns.violinplot(x='Category', y='RMSE', data=rmse_combined, palette='Set3')
+    #
+    # # 设置标签和标题
+    # plt.xlabel('Category', fontsize=20)
+    # plt.ylabel('RMSE', fontsize=20)
+    # # plt.title('Violin plots of RMSE for Each Category', fontsize=25)
+    #
+    # # plt.xticks(fontsize=20)
+    # plt.xticks(rotation=30, fontsize=20)
+    # plt.yticks(fontsize=20)
+    #
+    # # 调整布局
+    # plt.tight_layout()
+    #
+    # # 保存并显示图像
+    # plt.savefig(file+'/plot_results/rmse_violinplots.png')
+    # plt.show()
     # ------------------------------------------------------------------
     #
     # 绘制散点图
-    # plt.figure(figsize=(5, 5))
-    # # plt.scatter(long_vector1, long_vector2, alpha=0.5)
-    # # 绘制散点图，指定点的大小和颜色
-    # # plt.scatter(long_vector1, long_vector2, alpha=0.5, s=100, color='HotPink')
-    # # plt.scatter(long_vector1, long_vector2, alpha=0.5, s=100, color='DeepSkyBlue')
-    # # plt.scatter(long_vector1, long_vector2, alpha=0.5, s=100, color='MediumAquamarine')
-    # # plt.scatter(long_vector1, long_vector2, alpha=0.5, s=100, color='DarkOrange')
-    # plt.scatter(long_vector1, long_vector2, alpha=0.5, s=100, color='Tomato')
-    # # plt.title(f"{filename}\nScatter Plot with Lin's CCC: {overall_ccc:.2f}")
+    plt.figure(figsize=(5, 5))
+    # plt.scatter(long_vector1, long_vector2, alpha=0.5)
+    # 绘制散点图，指定点的大小和颜色
+    plt.scatter(long_vector1, long_vector2, alpha=0.5, s=50, color='HotPink')
+    # plt.scatter(long_vector1, long_vector2, alpha=0.5, s=50, color='DeepSkyBlue')
+    # plt.scatter(long_vector1, long_vector2, alpha=0.5, s=70, color='MediumAquamarine')
+    # plt.scatter(long_vector1, long_vector2, alpha=0.5, s=60, color='DarkOrange')
+    # plt.scatter(long_vector1, long_vector2, alpha=0.5, s=80, color='Tomato')
+    plt.title(f"{filename}\nScatter Plot with Lin's CCC: {overall_ccc:.2f}")
     # plt.title(f"{filename}\nScatter Plot with cosine_val: {cosine_val_all:.2f}")
-    # # plt.title(f"Scatter Plot with Lin's CCC: {overall_ccc:.2f}")
-    # plt.xlabel('Truth')
-    # plt.ylabel('Prediction')
-    # # plt.grid(True)
-    # plt.grid(False)
-    #
-    # # 保存散点图为 PNG 文件
-    # plt.savefig(file+'/plot_results/scatter_plot_all.png')
-    # plt.show()
+    # plt.title(f"Scatter Plot with Lin's CCC: {overall_ccc:.2f}")
+    plt.xlabel('Truth')
+    plt.ylabel('Prediction')
+    # plt.grid(True)
+    plt.grid(False)
+
+    # 保存散点图为 PNG 文件
+    plt.savefig(file+'/plot_results/scatter_plot_all.png')
+    plt.show()
     # # ##-----------------------------------------------------
     # data1 = get_data(file1_path)
     # data2 = get_data(file2_path)

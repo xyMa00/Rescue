@@ -8,11 +8,11 @@
 Ressac neural network is implemented in [Pytorch](https://pytorch.org/) framework.  
 Running Rescue on CUDA is recommended if available.   
 
-#### install from PyPI
+#### Install from PyPI
 
     pip install Rescue
 
-#### install latest develop version from GitHub
+#### Install latest develop version from GitHub
     https://github.com/xyMa00/Rescue.git
 or download and install
 
@@ -55,7 +55,7 @@ Output will be saved in the output folder including:
 #### Useful options  
 * save results in a specific folder: [-o] or [--outdir] 
 * modify the initial learning rate, default is 0.0001: [--lr]  
-* change random seed for parameter initialization, default is 32: [--seed]
+* you can change the batch size, default is 32: [-b] or [--batch_size] 
 
 
 #### Help
@@ -69,4 +69,4 @@ Use functions in Rescue packages.
 	from rescue import *
 
 ## Tutorial
-**[Tutorial LUSC](https://github.com/xyMa00/Rescue/wiki/LUSC)**   Run Rescue on scRNA-seq **LUSC** dataset (k=10, 2500 genes)
+**[Tutorial LUSC](https://github.com/xyMa00/Rescue/wiki/LUSC)**   Run Rescue on scRNA-seq **LUSC** dataset (k=10, 18081 genes)

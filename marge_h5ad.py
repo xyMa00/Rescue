@@ -142,8 +142,10 @@ if __name__ == "__main__":
     # # file_name = '/RNA_data_new'
     # out_path1 = out_path + file_name
     # in_Path = out_path1 + '.h5ad'
-    new_file= 'hscr/all_2_seurat_object_common_8/Z_S_HSCR3_dilated_2500/20000/test_2500_20000_4000.h5ad'
-    out_path = 'hscr/all_2_seurat_object_common_8/Z_S_HSCR3_dilated_2500/20000/'
+    # new_file= 'hscr/all_2_seurat_object_common_8/Z_S_HSCR3_dilated_2500/20000/test_2500_20000_4000.h5ad'
+    # out_path = 'hscr/all_2_seurat_object_common_8/Z_S_HSCR3_dilated_2500/20000/'
+    new_file= 'LUSC_IA3_BC3_10/2500/LUSC_IA3_BC3_10_2500.h5ad'
+    out_path = 'LUSC_IA3_BC3_10/2500/'
     # new_file = select_num_features(in_Path, out_path1)
     # 输出获取占比和矩阵数据
     getFractions(new_file, out_path)

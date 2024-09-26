@@ -24,33 +24,64 @@ def sort_key(s):
         return (letter_part, number_part)
     return (s, 0)
 
-def generate_numbers_with_fixed_sum(fixed_number, n):
+def generate_numbers_with_fixed_sum(fixed_number, n, unk_num=-1):
     if fixed_number < 0 or fixed_number > 1:
         raise ValueError("The fixed number must be between 0 and 1.")
-
     if n < 1:
         raise ValueError("The total number of elements n must be at least 1.")
-
     # Generate n-1 random numbers
     random_numbers = np.random.rand(n - 1)
-
     # Calculate the sum of the random numbers
     random_sum = np.sum(random_numbers)
-
     # Normalize the random numbers to sum to (1 - fixed_number)
     random_numbers = (random_numbers / random_sum) * (1 - fixed_number)
-
     # Combine the fixed number with the normalized random numbers
-    # result = np.append(random_numbers, fixed_number)
-    result = np.append(fixed_number, random_numbers)
+    if unk_num>=0:
+        # 在第 unk_num 个位置插入数字，索引为 unk_num-1（0 基）
+        result = np.insert(random_numbers, unk_num-1, fixed_number)
+    else:
+        result = np.append(fixed_number, random_numbers)
 
     return result
 
 
 
 
+def create_fractions_unk(no_celltypes, count, n_samps=4000):
+    """
+    Create random fractions
+    :param no_celltypes: number of fractions to create
+    :return: list of random fractions of length no_celltypes
+    """
+    # fracs = np.random.rand(no_celltypes)
+    # fracs_sum = np.sum(fracs)
+    # fracs = np.divide(fracs, fracs_sum)
 
-def create_fractions(no_celltypes, count, n_samps=4000):
+    if no_celltypes == 1:
+        fixed_number = 1
+    else:
+        for i in range(1, 11):
+            if (i - 1) * 0.1 * n_samps < count <= i * 0.1 * n_samps:
+                fixed_number = np.random.uniform((i - 1) * 0.1, i * 0.1)
+                break
+        # fixed_number = np.random.uniform(0.5, 1)
+        print(fixed_number)
+        # Example usage
+        # fixed_number = lie1
+
+    # # # # # # 指定占比
+    # fixed_number = 0.3
+    # # fixed_number = np.random.uniform(0.5, 1)
+    # print(fixed_number)
+    # Example usage
+    # fixed_number = lie1
+    n = no_celltypes  # Total number of elements
+    fracs = generate_numbers_with_fixed_sum(fixed_number, n, 6)
+    print("Numbers:", fracs)
+    print("Sum of numbers:", np.sum(fracs))
+
+    return fracs
+def create_fractions(no_celltypes, count, n_samps=2000):
     """
     Create random fractions
     :param no_celltypes: number of fractions to create
@@ -78,6 +109,33 @@ def create_fractions(no_celltypes, count, n_samps=4000):
     # if 0.1*n_samps< count <= 0.2 * n_samps:
     #     fixed_number = np.random.uniform(0.1, 0.2)
     # fixed_number=0
+
+    if no_celltypes==1:
+        fixed_number = 1
+    else:
+        for i in range(1, 11):
+            if (i - 1) * 0.1 * n_samps < count <= i * 0.1 * n_samps:
+                fixed_number = np.random.uniform((i - 1) * 0.1, i * 0.1)
+                break
+        # fixed_number = np.random.uniform(0.5, 1)
+        print(fixed_number)
+        # Example usage
+        # fixed_number = lie1
+    n = no_celltypes  # Total number of elements
+    fracs = generate_numbers_with_fixed_sum(fixed_number, n)
+    print("Numbers:", fracs)
+    print("Sum of numbers:", np.sum(fracs))
+
+
+
+    return fracs
+def create_fractions_2(no_celltypes, count, n_samps=2000):
+    """
+    Create random fractions
+    :param no_celltypes: number of fractions to create
+    :return: list of random fractions of length no_celltypes
+    """
+
     for i in range(1, 11):
         if (i - 1) * 0.1 * n_samps < count <= i * 0.1 * n_samps:
             fixed_number = np.random.uniform((i - 1) * 0.1, i * 0.1)
@@ -87,11 +145,11 @@ def create_fractions(no_celltypes, count, n_samps=4000):
     # Example usage
     # fixed_number = lie1
     n = no_celltypes  # Total number of elements
-    fracs = generate_numbers_with_fixed_sum(fixed_number, n)
+    pos = count%no_celltypes+1
+    print('pos:', pos)
+    fracs = generate_numbers_with_fixed_sum(fixed_number, n, pos)
     print("Numbers:", fracs)
     print("Sum of numbers:", np.sum(fracs))
-
-
 
     return fracs
 
@@ -124,8 +182,8 @@ class BulkSimulator(object):
             unknown_celltypes = ["unknown"]
 
         self.sample_size = sample_size
-        # self.num_samples = num_samples // 2
-        self.num_samples = num_samples
+        self.num_samples = num_samples // 2
+        # self.num_samples = num_samples
         self.data_path = data_path
         self.out_dir = out_dir
         self.pattern = pattern
@@ -322,28 +380,6 @@ class BulkSimulator(object):
             sparse_samples_progress = progress_bar.add_task(
                 "Sparse samples", total=self.num_samples, samples=0
             )
-
-            # # Create normal samples
-            # for i in range(self.num_samples):
-            #     progress_bar.update(normal_samples_progress, advance=1, samples=i + 1)
-            #     sample, label = self.create_subsample(x, y, celltypes)
-            #     sim_x.append(sample)
-            #     sim_y.append(label)
-            n_sam = self.num_samples
-            # for i in range(n_sam):
-            #     progress_bar.update(normal_samples_progress, advance=1, samples=i + 1)
-            #     print(i)
-            #     sample, label = self.create_subsample(x, y, celltypes, sparse=False, samp = n_sam, count=i+1)
-            #     sim_x.append(sample)
-            #     sim_y.append(label)
-            # Create sparase samples
-            for i in range(self.num_samples):
-                progress_bar.update(sparse_samples_progress, advance=1, samples=i + 1)
-                # sample, label = self.create_subsample(x, y, celltypes, sparse=True)
-                sample, label = self.create_subsample(x, y, celltypes, sparse=True, samp=n_sam, count=i + 1)
-                sim_x.append(sample)
-                sim_y.append(label)
-
             # # Create normal samples
             # for i in range(self.num_samples):
             #     progress_bar.update(normal_samples_progress, advance=1, samples=i + 1)
@@ -357,13 +393,30 @@ class BulkSimulator(object):
             #     sample, label = self.create_subsample(x, y, celltypes, sparse=True)
             #     sim_x.append(sample)
             #     sim_y.append(label)
+            n_sam = self.num_samples
+            for i in range(self.num_samples):
+                progress_bar.update(normal_samples_progress, advance=1, samples=i + 1)
+                # print(i)
+                sample, label = self.create_subsample(x, y, celltypes, sparse=False, samp = n_sam, count=i+1)
+                sim_x.append(sample)
+                sim_y.append(label)
+            # Create sparase samples
+            for i in range(self.num_samples):
+                progress_bar.update(sparse_samples_progress, advance=1, samples=i + 1)
+                # sample, label = self.create_subsample(x, y, celltypes, sparse=True)
+                sample, label = self.create_subsample(x, y, celltypes, sparse=True, samp=n_sam, count=i + 1)
+                sim_x.append(sample)
+                sim_y.append(label)
+
+
+
 
         sim_x = pd.concat(sim_x, axis=1).T
         sim_y = pd.DataFrame(sim_y, columns=celltypes)
 
         return sim_x, sim_y
 
-    def create_subsample(self, x, y, celltypes, sparse=False, samp = 4000, count=0):
+    def create_subsample(self, x, y, celltypes, sparse=False, samp = 2000, count=0):
         """
         Generate artifical bulk subsample with random fractions of celltypes
         If sparse is set to true, add random celltypes to the missing celltypes
@@ -376,17 +429,21 @@ class BulkSimulator(object):
         """
         available_celltypes = celltypes
         if sparse:
-            # no_keep = np.random.randint(1, len(available_celltypes))
-            no_keep = np.random.randint(1, len(available_celltypes)+1)
+            no_keep = np.random.randint(1, len(available_celltypes))
+            # no_keep = np.random.randint(1, len(available_celltypes)+1)
             keep = np.random.choice(
                 list(range(len(available_celltypes))), size=no_keep, replace=False
             )
             available_celltypes = [available_celltypes[i] for i in keep]
 
-        no_avail_cts = len(available_celltypes)
-
-        # Create fractions for available celltypes
-        fracs = create_fractions(no_celltypes=no_avail_cts, count=count, n_samps = samp)
+            no_avail_cts = len(available_celltypes)
+            fracs = create_fractions(no_celltypes=no_avail_cts, count=count, n_samps=samp)
+        else:
+            # print(available_celltypes)
+            no_avail_cts = len(available_celltypes)
+            # Create fractions for available celltypes
+            # fracs = create_fractions_unk(no_celltypes=no_avail_cts, count=count, n_samps=samp)
+            fracs = create_fractions_2(no_celltypes=no_avail_cts, count=count, n_samps = samp)
         samp_fracs = np.multiply(fracs, self.sample_size)
         samp_fracs = list(map(int, samp_fracs))
 
@@ -414,6 +471,7 @@ class BulkSimulator(object):
         df_samp = df_samp.sum(axis=0)
 
         return df_samp, fracs_complete
+
 
     @staticmethod
     def merge_datasets(data_dir="./", files=None, out_name="data.h5ad"):
