@@ -59,14 +59,14 @@ Output will be saved in the output folder including:
 
 
 #### Help
-Look for more usage of Ressac
+Look for more usage of Rescue 
 
 	Rescue.py --help 
 
-Use functions in Ressac packages.
+Use functions in Rescue packages.
 
 	import rescue
 	from rescue import *
 
 ## Tutorial
-**[Tutorial Forebrain](https://github.com/xyMa00/Rescue/wiki/Forebrain)**   Run Ressac on dense matrix **Forebrain** dataset (k=8, 2088 cells)
+**[Tutorial LUSC](https://github.com/xyMa00/Rescue/wiki/LUSC)**   Run Rescue on scRNA-seq **LUSC** dataset (k=10, 2500 genes)
