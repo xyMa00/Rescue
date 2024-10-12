@@ -70,4 +70,6 @@ Use functions in Rescue packages.
 
 ## Tutorial
 **[Tutorial PBMC](https://github.com/xyMa00/Rescue/wiki/PBMC)**   :Run Rescue on scRNA-seq **PBMC** dataset (k=9, 13714 genes)
+
+
 **[Tutorial LUSC](https://github.com/xyMa00/Rescue/wiki/LUSC)**   :Run Rescue on scRNA-seq **LUSC** dataset (k=10, 18081 genes)
