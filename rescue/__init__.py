@@ -4,41 +4,30 @@ from .loss import *
 from .layer import *
 from .model import *
 from .loss import *
-from .dataset import load_dataset
+# from .dataset import load_dataset
 from .utils import estimate_k, binarization
 from .dataset import *
 
 import time
 import torch
-
 import numpy as np
 import pandas as pd
 import os
 import scanpy as sc
-
 import matplotlib
 matplotlib.use('Agg')
 # import scanpy as sc
 sc.settings.autoshow = False
-
 from anndata import AnnData
 from typing import Union, List
-
-#from .ED_model import Autoencoder
 from .plot import *
-
 from sklearn.metrics import f1_score
-#from .forebrain import ForeBrain
-# from .ResNetAE_pytorch import ResNetVAE
 from .ResNetAE_pytorch import ResNet_pred
 import episcanpy.api as epi
-
 import anndata as ad
 from torch.utils.data import DataLoader
-
 from .forebrain import ForeBrain
 from labels_statistic import *
-from TFIDF import *
 
 
 def get_score(true_labels, kmeans_labels):
@@ -93,45 +82,39 @@ def some_function(
         torch.cuda.set_device(gpu)
     else:
         device = 'cpu'
-    # device = 'cpu'
-    
+
     print("\n**********************************************************************")
-    print(" Ressac: Resnet based single-cell ATAC-seq clustering")
+    print(" Rescue: Resnet model employing scRNA-seq for characterizing cell composition by using expression of whole genome.")
     print("**********************************************************************\n")
-
-    # adata, trainloader, testloader = load_dataset_c(
-    #     n_centroids,
-    #     data_list,
-    #     test_list,
-    #     min_genes=min_peaks,
-    #     min_cells=min_cells,
-    #     n_top_genes=n_feature,
-    #     batch_size=batch_size,
-    #     log=None,
-    # )
-
-    # -----------test-----------------
-    adata, testloader = load_dataset_test(
-        n_centroids,
-        data_list,
-        test_list,
-        min_genes=min_peaks,
-        min_cells=min_cells,
-        n_top_genes=n_feature,
-        batch_size=batch_size,
-        log=None,
-    )
-
-
+    if not pretrain:
+        adata, trainloader, testloader = load_dataset_c(
+            n_centroids,
+            data_list,
+            test_list,
+            min_genes=min_peaks,
+            min_cells=min_cells,
+            n_top_genes=n_feature,
+            batch_size=batch_size,
+            log=None,
+        )
+    else:
+        # -----------test-----------------
+        adata, testloader = load_dataset_test(
+            n_centroids,
+            data_list,
+            test_list,
+            min_genes=min_peaks,
+            min_cells=min_cells,
+            n_top_genes=n_feature,
+            batch_size=batch_size,
+            log=None,
+        )
     n_obs, n_vars = adata.shape
     print(n_obs, n_vars)
     s = math.floor(math.sqrt(n_vars))
-
     cell_num = adata.shape[0]
     input_dim = adata.shape[1]
-
     k = n_centroids
-    # k = data.cluster_num
 
     if outdir:
         outdir = outdir + '/'
@@ -150,18 +133,12 @@ def some_function(
     decode_dim = []
     dims = [input_dim, latent, encode_dim, decode_dim]
 
-
-
-    # model = ResNetVAE(input_shape=(s, s, 1), n_centroids=k, dims=dims).to(device)
-
     model = ResNet_pred(input_shape=(s, s, 1), dims=dims, n_centroids=k,).to(device)
-
     model = model.to(torch.float)
 
     if not pretrain:
         print('\n## Training Model ##')
-
-        model.fit_res_at_mlp(adata, trainloader, testloader, batch_size, k,
+        model.fit_res(adata, trainloader, testloader, batch_size, k,
                              lr=lr,
                              verbose=verbose,
                              device=device,
@@ -170,20 +147,9 @@ def some_function(
                              )
 
     else:
-        # adata, testloader = load_dataset_test(n_centroids,
-        #     data_list,
-        #     min_genes=min_peaks,
-        #     min_cells=min_cells,
-        #     n_top_genes=n_feature,
-        #     batch_size=batch_size,
-        #     log=None,
-        # )
-
-        model_path ='pre/model_matrix_0h_train_10000_5000_4000_0h_1.pt'
+        model_path ='pre/model_LUSC_IA3_BC3_10_2500_5000_4000.pt'
         print('\n## Loading Model: {}\n'.format(model_path))
         # 使用 torch.load() 加载模型状态字典，并映射到CPU
-        #state_dict = torch.load(model_path, map_location=torch.device('cpu'))
-        # state_dict = torch.load(model_path, map_location=torch.device('cuda'))
         state_dict = torch.load(model_path, map_location=torch.device(device))
         model.load_state_dict(state_dict)
         model.to(device)
@@ -206,9 +172,4 @@ def some_function(
         row_indices = adata.obs.index
         output_df = pd.DataFrame(output_pre, index=row_indices, columns=column_indices)
         output_df.to_csv('pre/model_outputs.txt', sep='\t', index=True, header=True)
-
-        # # 保存输出到文本文件
-        # np.savetxt('pre/model_outputs.txt', output_pre, delimiter=',')
     print("over....")
-    
-    # return adata
