@@ -22,14 +22,18 @@ def simulation(simulate_dir, data_dir, sample_size, num_samples, pattern,
     bulk_simulator.simulate()
 
     # Merge the resulting datasets
-    bulk_simulator.merge_datasets(data_dir=simulate_dir,
-                                  files=bulk_simulator.dataset_files,
-                                  out_name=out_prefix + ".h5ad")
+    # bulk_simulator.merge_datasets(data_dir=simulate_dir,
+    #                               files=bulk_simulator.dataset_files,
+    #                               out_name=out_prefix + ".h5ad")
 
 
 if __name__ == "__main__":
-    simulation(simulate_dir='LUSC_IA3_BC3_10/2500', data_dir='LUSC_IA3_BC3_10/2500/data', sample_size=500,
-               num_samples=100,
+    # simulation(simulate_dir='LUSC_IA3_BC3_10/2500', data_dir='LUSC_IA3_BC3_10/2500/data', sample_size=500,
+    #            num_samples=100,
+    #            pattern='*_counts.txt',
+    #            unknown_celltypes=[], fmt="txt", out_prefix='exam')
+    simulation(simulate_dir='seurat_pbmc/4000/10000', data_dir='seurat_pbmc/4000/10000/data', sample_size=500,
+               num_samples=50,
                pattern='*_counts.txt',
                unknown_celltypes=[], fmt="txt", out_prefix='exam')
 

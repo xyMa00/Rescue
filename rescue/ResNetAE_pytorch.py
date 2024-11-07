@@ -1,20 +1,14 @@
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
-
 from torch.nn import functional as F
-
 import torch
-
-# from Resnet50_MXY import *
-from .Resnet34 import *
 from .Resnet18 import *
 from tqdm import tqdm, trange
 import os
 import numpy as np
 
 import scanpy as sc
-from ressac.plot import *
 import anndata as ad
 import episcanpy.api as epi
 
@@ -52,21 +46,21 @@ def lins_ccc(x, y):
     ccc = (2 * covariance) / (x_var + y_var + (x_mean - y_mean) ** 2)
 
     return ccc
-def get_score(true_labels, kmeans_labels):
-    # 假设 kmeans_labels 是 K-Means 聚类的结果
-    # 假设 true_labels 是真实的标签（如果有的话）
-    # 如果没有真实标签，可以使用其他方法来评估聚类结果
-    # 计算调整后的兰德指数（ARI）
-    ari = adjusted_rand_score(true_labels, kmeans_labels)
-    print("Adjusted Rand Index (ARI):", ari)
-    # 计算归一化互信息（NMI）
-    nmi = normalized_mutual_info_score(true_labels, kmeans_labels)
-    print("Normalized Mutual Information (NMI):", nmi)
-    # 计算 F1 分数
-    # f1 = f1_score(true_labels, kmeans_labels, average='weighted')
-    f1 = 0
-    print("F1 Score:", f1)
-    return ari, nmi, f1
+# def get_score(true_labels, kmeans_labels):
+#     # 假设 kmeans_labels 是 K-Means 聚类的结果
+#     # 假设 true_labels 是真实的标签（如果有的话）
+#     # 如果没有真实标签，可以使用其他方法来评估聚类结果
+#     # 计算调整后的兰德指数（ARI）
+#     ari = adjusted_rand_score(true_labels, kmeans_labels)
+#     print("Adjusted Rand Index (ARI):", ari)
+#     # 计算归一化互信息（NMI）
+#     nmi = normalized_mutual_info_score(true_labels, kmeans_labels)
+#     print("Normalized Mutual Information (NMI):", nmi)
+#     # 计算 F1 分数
+#     # f1 = f1_score(true_labels, kmeans_labels, average='weighted')
+#     f1 = 0
+#     print("F1 Score:", f1)
+#     return ari, nmi, f1
 
 def kl_divergence(mu, logvar):
     """
@@ -756,7 +750,7 @@ class ResNet_pred(torch.nn.Module):
 
         return output
 
-    def fit_res_at_mlp(self, adata, dataloader, dataloader_test, batch_size, k,
+    def fit_res(self, adata, dataloader, dataloader_test, batch_size, k,
             lr=0.002,
             weight_decay=5e-4,
             device='cpu',

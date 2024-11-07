@@ -11,14 +11,19 @@ import argparse
 from rescue import some_function
 
 
-dataPath = 'LUSC_IA3_BC3_10/2500/train/LUSC_IA3_BC3_10_2500_5000_4000.h5ad'
-testPath = 'LUSC_IA3_BC3_10/2500/test/LUSC_IA3_BC3_10_2500_2000.h5ad'
+# dataPath = 'LUSC_IA3_BC3_10/2500/train/LUSC_IA3_BC3_10_2500_5000_4000.h5ad'
+# testPath = 'LUSC_IA3_BC3_10/2500/test/LUSC_IA3_BC3_10_2500_2000.h5ad'
+# modelPath = 'pre/model_LUSC_IA3_BC3_10_2500_5000_4000.pt'
+dataPath = 'seurat_pbmc/4000/10000/train/pbmc3k_9_10000_4000.h5ad'
+testPath = 'seurat_pbmc/4000/10000/test/pbmc3k_9_10000_1000.h5ad'
+modelPath = 'pre/model_pbmc3k_9_10000_4000.pt'
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Rescue: Resnet model employing scRNA-seq for characterizing cell composition by using expression of whole genome')
     parser.add_argument('--data_list', '-d', type=str, nargs='+', default=dataPath)
     parser.add_argument('--test_list', '-t', type=str, nargs='+', default=testPath)
-    parser.add_argument('--n_centroids', '-k', type=int, help='cluster number', default=10)
+    parser.add_argument('--model_path', '-m', type=str, nargs='+', default=modelPath)
+    parser.add_argument('--n_centroids', '-k', type=int, help='cluster number', default=9)
     parser.add_argument('--outdir', '-o', type=str, default='output/', help='Output path')
     parser.add_argument('--verbose', action='store_true', help='Print loss of training process')
     parser.add_argument('--pretrain', type=str, default=None, help='Load the trained model')
@@ -39,7 +44,6 @@ if __name__ == '__main__':
     parser.add_argument('--impute', action='store_true', help='Save the imputed data in layer impute')
     parser.add_argument('--binary', action='store_true', help='Save binary imputed data in layer binary')
     parser.add_argument('--embed', type=str, default='UMAP')
-    #parser.add_argument('--embed', type=str, default='tSNE')
     parser.add_argument('--reference', type=str, default='celltype')
     # parser.add_argument('--cluster_method', type=str, default='leiden')
     parser.add_argument('--cluster_method', type=str, default='kmeans')
@@ -49,6 +53,7 @@ if __name__ == '__main__':
     adata = some_function(
         args.data_list,
         args.test_list,
+        args.model_path,
         n_centroids = args.n_centroids,
         outdir = args.outdir,
         verbose = args.verbose,

@@ -50,6 +50,7 @@ def get_score(true_labels, kmeans_labels):
 def some_function(
         data_list:Union[str, List],
         test_list:Union[str, List],
+        model_path:Union[str, List],
         n_centroids:int = 30,
         outdir:bool = None,
         verbose:bool = False,
@@ -147,7 +148,8 @@ def some_function(
                              )
 
     else:
-        model_path ='pre/model_LUSC_IA3_BC3_10_2500_5000_4000.pt'
+        # model_path ='pre/model_LUSC_IA3_BC3_10_2500_5000_4000.pt'
+        model_path = model_path
         print('\n## Loading Model: {}\n'.format(model_path))
         # 使用 torch.load() 加载模型状态字典，并映射到CPU
         state_dict = torch.load(model_path, map_location=torch.device(device))
