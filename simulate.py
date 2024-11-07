@@ -33,7 +33,7 @@ if __name__ == "__main__":
     #            pattern='*_counts.txt',
     #            unknown_celltypes=[], fmt="txt", out_prefix='exam')
     simulation(simulate_dir='seurat_pbmc/4000/10000', data_dir='seurat_pbmc/4000/10000/data', sample_size=500,
-               num_samples=50,
+               num_samples=4000,
                pattern='*_counts.txt',
                unknown_celltypes=[], fmt="txt", out_prefix='exam')
 
