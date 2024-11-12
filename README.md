@@ -29,15 +29,6 @@ But you need two .txt files about scRNA-seq data: *_celltypes.txt and _counts.tx
 (The _celltypes.txt file contains the 'Celltype' column.)
 
 
-
-## Data preprocessing
-* First you need to convert the input data to a .h5ad file(this file should contain 'cell_type' in its obs).
-* Second, you can screen based on cells and peaks, at the same time, you can choose to keep the most variable features.
-* Third, the final number of retained peaks should be the square of some number.
-
-You can refer to **epi_h5ad.py** for the whole process.
-
-
 ## Quickly start to make predictions
 
 #### Input
