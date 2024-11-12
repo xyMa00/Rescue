@@ -59,9 +59,9 @@ Output will be saved in the output folder including:
 
 
 #### Useful options  
-* save results in a specific folder: [-o] or [--outdir] 
+* save results in a specific folder: [--outdir] 
 * modify the initial learning rate, default is 0.0001: [--lr]  
-* you can change the batch size, default is 32: [-b] or [--batch_size] 
+* you can change the batch size, default is 32: [--batch_size] 
 
 
 #### Help
