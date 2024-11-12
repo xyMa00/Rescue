@@ -24,7 +24,7 @@ Installation only requires a few minutes.
 
  #### From scRNA-seq generate simulation data sets by running 
 
-    simulate.py -d [input]
+    python create_dataset.py -out seurat_pbmc/4000/10000 -data seurat_pbmc/4000/10000/data
 But you need two .txt files about scRNA-seq data: *_celltypes.txt and _counts.txt.
 (The _celltypes.txt file contains the 'Celltype' column.)
 
@@ -38,18 +38,24 @@ But you need two .txt files about scRNA-seq data: *_celltypes.txt and _counts.tx
 You can refer to **epi_h5ad.py** for the whole process.
 
 
-## Quick Start
+## Quickly start to make predictions
 
 #### Input
 * h5ad file(should contain 'cell_type' in its obs).
 
-#### Run 
+#### Run to train the model
 
-    Rescue.py -d [input]
+    python Rescue.py -data seurat_pbmc/4000/10000/train/pbmc3k_9_10000_4000.h5ad -test seurat_pbmc/4000/10000/test/pbmc3k_9_10000_1000.h5ad
 
 #### Output
 Output will be saved in the output folder including:
-* **model.pt**:  saved model to reproduce results cooperated with option --pretrain
+* **model.pt**:  saved model to predict cooperated with option --pretrain
+
+
+#### Run to predict
+
+    python Rescue.py -data seurat_pbmc/4000/10000/train/pbmc3k_9_10000_4000.h5ad -test seurat_pbmc/4000/10000/test/pbmc3k_9_10000_1000.h5ad -model pre/model_pbmc3k_9_10000_4000.pt --pretrain
+
 
 
 #### Useful options  

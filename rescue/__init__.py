@@ -51,7 +51,7 @@ def some_function(
         data_list:Union[str, List],
         test_list:Union[str, List],
         model_path:Union[str, List],
-        n_centroids:int = 30,
+        # n_centroids:int = 30,
         outdir:bool = None,
         verbose:bool = False,
         pretrain:str = None,
@@ -59,20 +59,6 @@ def some_function(
         batch_size:int = 64,
         gpu:int = 0,
         seed:int = 18,
-        encode_dim:List = [1024, 128],
-        decode_dim:List = [],
-        latent:int = 10,
-        min_peaks:int = 100,
-        min_cells:Union[float, int] = 3,
-        n_feature:int = 100000,
-        log_transform:bool = False,
-        max_iter:int = 30000,
-        weight_decay:float = 5e-4,
-        impute:bool = False,
-        binary:bool = False,
-        embed:str = 'UMAP',
-        reference:str = 'cell_type',
-        cluster_method:str = 'leiden',
     )->AnnData:
 
     np.random.seed(seed)
@@ -87,54 +73,39 @@ def some_function(
     print("\n**********************************************************************")
     print(" Rescue: Resnet model employing scRNA-seq for characterizing cell composition by using expression of whole genome.")
     print("**********************************************************************\n")
+    n_centroids = 0
     if not pretrain:
-        adata, trainloader, testloader = load_dataset_c(
+        adata, trainloader, testloader,k = load_dataset_c(
             n_centroids,
             data_list,
             test_list,
-            min_genes=min_peaks,
-            min_cells=min_cells,
-            n_top_genes=n_feature,
             batch_size=batch_size,
-            log=None,
         )
     else:
         # -----------test-----------------
-        adata, testloader = load_dataset_test(
+        adata, testloader, k = load_dataset_test(
             n_centroids,
             data_list,
             test_list,
-            min_genes=min_peaks,
-            min_cells=min_cells,
-            n_top_genes=n_feature,
             batch_size=batch_size,
-            log=None,
         )
     n_obs, n_vars = adata.shape
     print(n_obs, n_vars)
     s = math.floor(math.sqrt(n_vars))
     cell_num = adata.shape[0]
     input_dim = adata.shape[1]
-    k = n_centroids
 
     if outdir:
         outdir = outdir + '/'
         if not os.path.exists(outdir):
             os.makedirs(outdir)
-        print('outdir: {}'.format(outdir))
-
+        # print('outdir: {}'.format(outdir))
     print("\n======== Parameters ========")
     print(
-        'Cell number: {}\nPeak number: {}\ndevice: {}\nlr: {}\nbatch_size: {}\ncell filter by peaks: {}\npeak filter by cells: {}\nn_centroids: {}'.format(
-            cell_num, input_dim, device, lr, batch_size, min_peaks, min_cells, k))
+        'Cell number: {}\nPeak number: {}\ndevice: {}\nlr: {}\nbatch_size: {}\nn_celltypess: {}'.format(
+            cell_num, input_dim, device, lr, batch_size, k))
     print("============================")
-
-    latent = 10
-    encode_dim = [1024, 128]
-    decode_dim = []
-    dims = [input_dim, latent, encode_dim, decode_dim]
-
-    model = ResNet_pred(input_shape=(s, s, 1), dims=dims, n_centroids=k,).to(device)
+    model = ResNet_pred(input_shape=(s, s, 1),  n_centroids=k,).to(device)
     model = model.to(torch.float)
 
     if not pretrain:
@@ -143,19 +114,17 @@ def some_function(
                              lr=lr,
                              verbose=verbose,
                              device=device,
-                             max_iter=max_iter,
                              outdir=outdir
                              )
 
     else:
-        # model_path ='pre/model_LUSC_IA3_BC3_10_2500_5000_4000.pt'
+        # model_path ='pre/model_pbmc3k_9_10000_4000.pt'
         model_path = model_path
         print('\n## Loading Model: {}\n'.format(model_path))
         # 使用 torch.load() 加载模型状态字典，并映射到CPU
         state_dict = torch.load(model_path, map_location=torch.device(device))
         model.load_state_dict(state_dict)
         model.to(device)
-
         output_pre = []
         with torch.no_grad():
             for inputs, labels in testloader:
@@ -166,11 +135,11 @@ def some_function(
                 inputs = inputs.to(device)  # 将输入数据移到GPU上，其中device是你的GPU设备
 
                 outputs = model.encoder(inputs)
+                # outputs = model.pre_resnet(inputs)
                 output_pre.append(outputs.cpu().numpy())
         # 将所有批次的输出拼接成一个数组
         output_pre = np.concatenate(output_pre, axis=0)
-
-        column_indices = adata.obs.columns[:n_centroids]
+        column_indices = adata.obs.columns[:k]
         row_indices = adata.obs.index
         output_df = pd.DataFrame(output_pre, index=row_indices, columns=column_indices)
         output_df.to_csv('pre/model_outputs.txt', sep='\t', index=True, header=True)
