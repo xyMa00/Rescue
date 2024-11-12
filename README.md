@@ -24,7 +24,7 @@ Installation only requires a few minutes.
 
  #### Simulation of bulk RNA-seq samples from scRNA-seq data 
 
-    python create_dataset.py --out_path seurat_pbmc/4000/10000 --data_path seurat_pbmc/4000/10000/data
+    python create_dataset.py --out_path seurat_pbmc/4000/10000 --data_path seurat_pbmc/4000/10000/data --sample_num 4000
 You need two .txt files about scRNA-seq data: *_celltypes.txt and _counts.txt.
 (The _celltypes.txt file contains the 'Celltype' column.)
 
@@ -36,7 +36,7 @@ You need two .txt files about scRNA-seq data: *_celltypes.txt and _counts.txt.
 
 ## Quickly start
 Using PBMC data as an example.\
-(And we provide detailed processing in **[Tutorial PBMC](https://github.com/xyMa00/Rescue/wiki/PBMC)** )
+(We provide detailed processing in **[Tutorial PBMC](https://github.com/xyMa00/Rescue/wiki/PBMC)** )
 #### Input
 * h5ad file(should contain 'cell_type' in its obs).
 
