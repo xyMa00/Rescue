@@ -28,7 +28,7 @@ if __name__ == "__main__":
     parser.add_argument('--out_path', type=str, default=outPath)
     parser.add_argument('--data_path', type=str, default=dataPath)
     parser.add_argument('--sample_size', type=int, default=500, help='Total number of cells')
-    parser.add_argument('--sample_num', type=int, default=100, help='Number of samples')
+    parser.add_argument('--sample_num', type=int, default=4000, help='Number of samples')
     parser.add_argument('--data_counts', type=str, default='*_counts.txt')
     parser.add_argument('--data_suffix', type=str, default='txt')
     args = parser.parse_args()
