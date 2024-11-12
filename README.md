@@ -5,7 +5,7 @@
 
 ## Installation  
 
-Ressac neural network is implemented in [Pytorch](https://pytorch.org/) framework.  
+Rescue neural network is implemented in [Pytorch](https://pytorch.org/) framework.  
 Running Rescue on CUDA is recommended if available.   
 
 #### Install from PyPI
@@ -24,7 +24,7 @@ Installation only requires a few minutes.
 
  #### From scRNA-seq generate simulation data sets by running 
 
-    python create_dataset.py -out seurat_pbmc/4000/10000 -data seurat_pbmc/4000/10000/data
+    python create_dataset.py --out_path seurat_pbmc/4000/10000 --data_path seurat_pbmc/4000/10000/data
 But you need two .txt files about scRNA-seq data: *_celltypes.txt and _counts.txt.
 (The _celltypes.txt file contains the 'Celltype' column.)
 
@@ -45,7 +45,7 @@ You can refer to **epi_h5ad.py** for the whole process.
 
 #### Run to train the model
 
-    python Rescue.py -data seurat_pbmc/4000/10000/train/pbmc3k_9_10000_4000.h5ad -test seurat_pbmc/4000/10000/test/pbmc3k_9_10000_1000.h5ad
+    python Rescue.py --dataPath seurat_pbmc/4000/10000/train/pbmc3k_9_10000_4000.h5ad --testPath seurat_pbmc/4000/10000/test/pbmc3k_9_10000_1000.h5ad
 
 #### Output
 Output will be saved in the output folder including:
@@ -54,7 +54,7 @@ Output will be saved in the output folder including:
 
 #### Run to predict
 
-    python Rescue.py -data seurat_pbmc/4000/10000/train/pbmc3k_9_10000_4000.h5ad -test seurat_pbmc/4000/10000/test/pbmc3k_9_10000_1000.h5ad -model pre/model_pbmc3k_9_10000_4000.pt --pretrain
+    python Rescue.py --dataPath seurat_pbmc/4000/10000/train/pbmc3k_9_10000_4000.h5ad --testPath seurat_pbmc/4000/10000/test/pbmc3k_9_10000_1000.h5ad --modelPath pre/model_pbmc3k_9_10000_4000.pt --pretrain
 
 
 

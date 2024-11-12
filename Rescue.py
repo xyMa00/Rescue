@@ -19,9 +19,9 @@ modelPath = 'pre/model_pbmc3k_9_10000_4000.pt'
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Rescue: Resnet model employing scRNA-seq for characterizing cell composition by using expression of whole genome')
-    parser.add_argument('--data_list', '-data', type=str, default=dataPath)
-    parser.add_argument('--test_list', '-test', type=str, default=testPath)
-    parser.add_argument('--model_path', '-model', type=str, default=modelPath)
+    parser.add_argument('--dataPath', type=str, default=dataPath)
+    parser.add_argument('--testPath', type=str, default=testPath)
+    parser.add_argument('--modelPath', type=str, default=modelPath)
     # parser.add_argument('--n_centroids', '-k', type=int, help='cluster number', default=9)
     parser.add_argument('--outdir', '-o', type=str, default='output/', help='Output path')
     parser.add_argument('--pretrain', action='store_true', help='Load the trained model(default: False)')
@@ -33,9 +33,9 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     adata = some_function(
-        args.data_list,
-        args.test_list,
-        args.model_path,
+        args.dataPath,
+        args.testPath,
+        args.modelPath,
         outdir=args.outdir,
         pretrain=args.pretrain,
         lr=args.lr,
