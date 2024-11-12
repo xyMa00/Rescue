@@ -29,7 +29,7 @@ But you need two .txt files about scRNA-seq data: *_celltypes.txt and _counts.tx
 (The _celltypes.txt file contains the 'Celltype' column.)
 
 
-## Quickly start to make predictions
+## Quickly start
 
 #### Input
 * h5ad file(should contain 'cell_type' in its obs).
