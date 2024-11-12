@@ -90,7 +90,6 @@ def some_function(
             batch_size=batch_size,
         )
     n_obs, n_vars = adata.shape
-    print(n_obs, n_vars)
     s = math.floor(math.sqrt(n_vars))
     cell_num = adata.shape[0]
     input_dim = adata.shape[1]
