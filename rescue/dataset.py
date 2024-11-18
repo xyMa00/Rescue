@@ -236,7 +236,7 @@ def load_dataset_c(
     Load dataset with preprocessing
     """
     adata = concat_data(data_list, batch_categories, join=join, batch_key=batch_key)
-    k = len(adata.uns.data['cell_types'])
+    k = len(adata.uns['cell_types'])
     if log: log.info('Raw dataset shape: {}'.format(adata.shape))
     if batch_name != 'batch':
         adata.obs['batch'] = adata.obs[batch_name]
@@ -278,7 +278,7 @@ def load_dataset_test(
     Load dataset with preprocessing
     """
     adata = concat_data(test_list, batch_categories, join=join, batch_key=batch_key)
-    k = len(adata.uns.data['cell_types'])
+    k = len(adata.uns['cell_types'])
     if log: log.info('Raw dataset shape: {}'.format(adata.shape))
     if batch_name != 'batch':
         adata.obs['batch'] = adata.obs[batch_name]

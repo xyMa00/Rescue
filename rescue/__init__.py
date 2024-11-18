@@ -122,6 +122,26 @@ def some_function(
         print('\n## Loading Model: {}\n'.format(model_path))
         # 使用 torch.load() 加载模型状态字典，并映射到CPU
         state_dict = torch.load(model_path, map_location=torch.device(device))
+
+        # from collections import OrderedDict
+        #
+        # # 加载原始 .pt 文件
+        # original_checkpoint = torch.load(model_path, map_location=torch.device(device))
+        # # 获取 state_dict（视保存结构决定是否需要检查 'state_dict'）
+        # state_dict = original_checkpoint.get("state_dict", original_checkpoint)
+        # # 创建新的键名
+        # new_state_dict = OrderedDict()
+        # for key, value in state_dict.items():
+        #     new_key = key.replace("encoder.", "pre_resnet.")  # 修改键名
+        #     new_state_dict[new_key] = value
+        # # 替换原 checkpoint 的 state_dict
+        # if "state_dict" in original_checkpoint:
+        #     original_checkpoint["state_dict"] = new_state_dict
+        # else:
+        #     original_checkpoint = new_state_dict
+        # # 保存修改后的 .pt 文件
+        # torch.save(original_checkpoint, "pre/model_weights_updated.pt")
+
         model.load_state_dict(state_dict)
         model.to(device)
         output_pre = []
@@ -133,8 +153,7 @@ def some_function(
                 inputs = inputs.to(torch.float)
                 inputs = inputs.to(device)  # 将输入数据移到GPU上，其中device是你的GPU设备
 
-                outputs = model.encoder(inputs)
-                # outputs = model.pre_resnet(inputs)
+                outputs = model.pre_resnet(inputs)
                 output_pre.append(outputs.cpu().numpy())
         # 将所有批次的输出拼接成一个数组
         output_pre = np.concatenate(output_pre, axis=0)
