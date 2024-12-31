@@ -1,7 +1,7 @@
 # Rescue: Resnet model employing scRNA-seq for characterizing cell composition by using expression of whole genome
 
-#![](https://github.com/xyMa00/Rescue/wiki/png/Rescue_model.png)
-
+<!--#![](https://github.com/xyMa00/Rescue/wiki/png/Rescue_model.png)-->
+![](https://github.com/xyMa00/Rescue/wiki/png/Rescue_model.png)
 
 ## Installation  
 
@@ -35,8 +35,8 @@ You need two .txt files about scRNA-seq data: *_celltypes.txt and _counts.txt.
 * --sample_num:number of samples.(default:4000)
 
 ## Quickly start
-Using PBMC data as an example.\
-(We provide detailed processing in **[Tutorial PBMC](https://github.com/xyMa00/Rescue/wiki/PBMC)** )
+Using PBMC(3k) data as an example.\
+(We provide detailed processing in **[Tutorial PBMC(3k)](https://github.com/xyMa00/Rescue/wiki/PBMC)** )
 #### Input
 * h5ad file(should contain 'cell_type' in its obs).
 
@@ -81,7 +81,3 @@ Use functions in Rescue packages.
 **[Tutorial PBMC(3k)](https://github.com/xyMa00/Rescue/wiki/PBMC)**   :Run Rescue on scRNA-seq **PBMC(3k)** dataset (k=9, 2638 cells, 13714 genes)\
 **[Tutorial Intestine](https://github.com/xyMa00/Rescue/wiki/Intestine)**   :Run Rescue on scRNA-seq **Intestine** dataset (k=8, 48055 cells, 2500 genes)\
 **[Tutorial Mouse](https://github.com/xyMa00/Rescue/wiki/Mouse)**   :Run Rescue on scRNA-seq **Mouse** dataset (k=13, 9897 cells, 16129 genes)
-
-<!--
-**[Tutorial LUSC](https://github.com/xyMa00/Rescue/wiki/LUSC)**   :Run Rescue on scRNA-seq **LUSC** dataset (k=10, 18081 genes)
--->
