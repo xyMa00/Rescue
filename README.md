@@ -78,7 +78,9 @@ Use functions in Rescue packages.
 	from rescue import *
 
 ## Tutorial
-**[Tutorial PBMC](https://github.com/xyMa00/Rescue/wiki/PBMC)**   :Run Rescue on scRNA-seq **PBMC** dataset (k=9, 13714 genes)
+**[Tutorial PBMC(3k)](https://github.com/xyMa00/Rescue/wiki/PBMC)**   :Run Rescue on scRNA-seq **PBMC(3k)** dataset (k=9, 2638 cells, 13714 genes)\
+**[Tutorial Intestine](https://github.com/xyMa00/Rescue/wiki/Intestine)**   :Run Rescue on scRNA-seq **Intestine** dataset (k=8, 48055 cells, 2500 genes)\
+**[Tutorial Mouse](https://github.com/xyMa00/Rescue/wiki/Mouse)**   :Run Rescue on scRNA-seq **Mouse** dataset (k=13, 9897 cells, 16129 genes)
 
 <!--
 **[Tutorial LUSC](https://github.com/xyMa00/Rescue/wiki/LUSC)**   :Run Rescue on scRNA-seq **LUSC** dataset (k=10, 18081 genes)
