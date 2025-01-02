@@ -1,10 +1,7 @@
 from .layer import *
-from .model import *
 from .loss import *
 from .layer import *
-from .model import *
 from .loss import *
-# from .dataset import load_dataset
 from .utils import estimate_k, binarization
 from .dataset import *
 
@@ -16,34 +13,15 @@ import os
 import scanpy as sc
 import matplotlib
 matplotlib.use('Agg')
-# import scanpy as sc
 sc.settings.autoshow = False
 from anndata import AnnData
 from typing import Union, List
-from .plot import *
 from sklearn.metrics import f1_score
 from .ResNetAE_pytorch import ResNet_pred
 import episcanpy.api as epi
 import anndata as ad
 from torch.utils.data import DataLoader
-from .forebrain import ForeBrain
 from labels_statistic import *
-
-
-def get_score(true_labels, kmeans_labels):
-    # 假设 kmeans_labels 是 K-Means 聚类的结果
-    # 假设 true_labels 是真实的标签（如果有的话）
-    # 如果没有真实标签，可以使用其他方法来评估聚类结果
-    # 计算调整后的兰德指数（ARI）
-    ari = adjusted_rand_score(true_labels, kmeans_labels)
-    print("Adjusted Rand Index (ARI):", ari)
-    # 计算归一化互信息（NMI）
-    nmi = normalized_mutual_info_score(true_labels, kmeans_labels)
-    print("Normalized Mutual Information (NMI):", nmi)
-    # 计算 F1 分数
-    f1 = f1_score(true_labels, kmeans_labels, average='weighted')
-    print("F1 Score:", f1)
-    return ari, nmi, f1
 
 
 
@@ -122,25 +100,6 @@ def some_function(
         print('\n## Loading Model: {}\n'.format(model_path))
         # 使用 torch.load() 加载模型状态字典，并映射到CPU
         state_dict = torch.load(model_path, map_location=torch.device(device))
-
-        # from collections import OrderedDict
-        #
-        # # 加载原始 .pt 文件
-        # original_checkpoint = torch.load(model_path, map_location=torch.device(device))
-        # # 获取 state_dict（视保存结构决定是否需要检查 'state_dict'）
-        # state_dict = original_checkpoint.get("state_dict", original_checkpoint)
-        # # 创建新的键名
-        # new_state_dict = OrderedDict()
-        # for key, value in state_dict.items():
-        #     new_key = key.replace("encoder.", "pre_resnet.")  # 修改键名
-        #     new_state_dict[new_key] = value
-        # # 替换原 checkpoint 的 state_dict
-        # if "state_dict" in original_checkpoint:
-        #     original_checkpoint["state_dict"] = new_state_dict
-        # else:
-        #     original_checkpoint = new_state_dict
-        # # 保存修改后的 .pt 文件
-        # torch.save(original_checkpoint, "pre/model_weights_updated.pt")
 
         model.load_state_dict(state_dict)
         model.to(device)

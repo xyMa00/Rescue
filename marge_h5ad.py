@@ -1,9 +1,9 @@
 import anndata as ad
 import scanpy as sc
 import pandas as pd
-
 import numpy as np
-
+import glob
+import copy
 
 
 def getFractions(in_path, out_path):
@@ -142,15 +142,46 @@ if __name__ == "__main__":
     # # file_name = '/RNA_data_new'
     # out_path1 = out_path + file_name
     # in_Path = out_path1 + '.h5ad'
-    # new_file= 'hscr/all_2_seurat_object_common_8/Z_S_HSCR3_dilated_2500/20000/test_2500_20000_4000.h5ad'
-    # out_path = 'hscr/all_2_seurat_object_common_8/Z_S_HSCR3_dilated_2500/20000/'
-    new_file= 'LUSC_IA3_BC3_10/2500/LUSC_IA3_BC3_10_2500.h5ad'
-    out_path = 'LUSC_IA3_BC3_10/2500/'
-    # new_file = select_num_features(in_Path, out_path1)
-    # 输出获取占比和矩阵数据
-    getFractions(new_file, out_path)
-    print("over..........")
+    # new_file= 'BBI/Intestine/exp7-human-250/exp7-human-250_2500_8_1000.h5ad'
+    # out_path = 'BBI/Intestine/exp7-human-250/'
+    # # new_file = select_num_features(in_Path, out_path1)
+    # # 输出获取占比和矩阵数据
+    # getFractions(new_file, out_path)
 
+# # -----------------批量合并文件----------------------
+    # file='LUSC/10000/pred/test/use'
+    # file = 'LUSC/10000/pred/test/use_4'
+    # file = 'LUSC/10000/pred/test/use_4/other_4'
+    # file = 'LUSC/10000/train_4/16000'
+    # file = 'LUSC/10000/pred/test/use/use_4'
+    file = 'E-MTAB_1/10000/all_7/marge_7/test'
+
+    # 定义要合并的 h5ad 文件路径列表
+    h5ad_files = glob.glob(file + '/*.h5ad')  # 替换为实际的文件目录
+    # 读取所有 h5ad 文件为 AnnData 对象
+    adatas = [ad.read_h5ad(file) for file in h5ad_files]
+    # 提前保存所有 .uns 信息
+    uns_dicts = [copy.deepcopy(adata.uns) for adata in adatas]
+    # 合并所有 AnnData 对象，保留所有信息
+    # 使用 join='outer' 来保留所有对象的变量 (features)
+    combined_adata = ad.concat(adatas, join='outer', label="batch", keys=h5ad_files)
+    # 手动合并 .uns 信息
+    for uns_dict in uns_dicts:
+        for key, value in uns_dict.items():
+            if key in combined_adata.uns:
+                # 如果 key 已经存在于 combined_adata.uns 中，可以选择覆盖或者跳过
+                # 这里假设后续的 .uns 信息覆盖前面的
+                combined_adata.uns[key] = value
+            else:
+                combined_adata.uns[key] = value
+    # 将合并后的对象保存为一个新的 h5ad 文件
+    in_Path = file + '/combined_file.h5ad'
+    combined_adata.write(in_Path, compression='gzip')
+
+    print("所有文件已合并并保存为 combined_file.h5ad")
+    getFractions(in_Path, file)
+
+    print("over..........")
 
 
 

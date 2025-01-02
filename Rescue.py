@@ -11,22 +11,19 @@ import argparse
 from rescue import some_function
 
 
-dataPath = 'LUSC_IA3_BC3_10/2500/train/LUSC_IA3_BC3_10_2500_5000_4000.h5ad'
-testPath = 'LUSC_IA3_BC3_10/2500/test/LUSC_IA3_BC3_10_2500_2000.h5ad'
-modelPath = 'pre/model_LUSC_IA3_BC3_10_2500_5000_4000.pt'
-# dataPath = 'seurat_pbmc/4000/10000/train/pbmc3k_9_10000_4000.h5ad'
-# testPath = 'seurat_pbmc/4000/10000/test/pbmc3k_9_10000_1000.h5ad'
-# modelPath = 'pre/model_pbmc3k_9_10000_4000.pt'
+
+dataPath = 'seurat_pbmc/4000/10000/train/pbmc3k_9_10000_4000.h5ad'
+testPath = 'seurat_pbmc/4000/10000/test/pbmc3k_9_10000_1000.h5ad'
+modelPath = 'pre/model_pbmc3k_9_10000_4000.pt'
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Rescue: Resnet model employing scRNA-seq for characterizing cell composition by using expression of whole genome')
     parser.add_argument('--dataPath', type=str, default=dataPath)
     parser.add_argument('--testPath', type=str, default=testPath)
     parser.add_argument('--modelPath', type=str, default=modelPath)
-    # parser.add_argument('--n_centroids', '-k', type=int, help='cluster number', default=9)
     parser.add_argument('--outdir', type=str, default='output/', help='Output path')
-    # parser.add_argument('--pretrain', action='store_true', help='Load the trained model(default: False)')
-    parser.add_argument('--pretrain', action='store_false', help='Do not load the trained model')
+    parser.add_argument('--pretrain', action='store_true', help='Load the trained model(default: False)')
+    # parser.add_argument('--pretrain', action='store_false', help='Load the trained model(default: True)')
     parser.add_argument('--lr', type=float, default=0.00001, help='Learning rate')
     parser.add_argument('--batch_size', type=int, default=32, help='Batch size')
     parser.add_argument('--gpu', default=0, type=int, help='Select gpu device number when training')

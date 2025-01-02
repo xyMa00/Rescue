@@ -8,7 +8,6 @@ from tqdm import tqdm, trange
 import os
 import numpy as np
 import scanpy as sc
-# from ressac.plot import *
 import anndata as ad
 import episcanpy.api as epi
 import time
@@ -51,52 +50,6 @@ def kl_divergence(mu, logvar):
     return -0.5 * torch.sum(1 + logvar - mu.pow(2) - logvar.exp(), dim=1)
 def binary_cross_entropy(recon_x, x):
     return -torch.sum(x * torch.log(recon_x + 1e-8) + (1 - x) * torch.log(1 - recon_x + 1e-8), dim=-1)
-
-class EarlyStopping:
-    """Early stops the training if loss doesn't improve after a given patience."""
-    def __init__(self, patience=10, verbose=False, outdir=None):
-        """
-        Args:
-            patience (int): How long to wait after last time loss improved.
-                            Default: 10
-            verbose (bool): If True, prints a message for each loss improvement.
-                            Default: False
-        """
-        self.patience = patience
-        self.verbose = verbose
-        self.counter = 0
-        self.best_score = None
-        self.early_stop = False
-        self.loss_min = np.Inf
-        self.model_file = os.path.join(outdir, 'model.pt') if outdir else None
-
-    def __call__(self, loss, model):
-        if np.isnan(loss):
-            self.early_stop = True
-        score = -loss
-
-        if self.best_score is None:
-            self.best_score = score
-            self.save_checkpoint(loss, model)
-        elif score < self.best_score:
-            self.counter += 1
-            if self.verbose:
-                print(f'EarlyStopping counter: {self.counter} out of {self.patience}')
-            if self.counter >= self.patience:
-                self.early_stop = True
-                model.load_model(self.model_file)
-        else:
-            self.best_score = score
-            self.save_checkpoint(loss, model)
-            self.counter = 0
-
-    def save_checkpoint(self, loss, model):
-        '''Saves model when loss decrease.'''
-        if self.verbose:
-            print(f'Loss decreased ({self.loss_min:.6f} --> {loss:.6f}).  Saving model ...')
-        if self.model_file:
-            torch.save(model.state_dict(), self.model_file)
-        self.loss_min = loss
 
 class ResNet_pred(torch.nn.Module):
     def __init__(self,
