@@ -21,12 +21,12 @@ def create_dataset(simulate_dir, data_dir, sample_size, num_samples, pattern, fm
     bulk_simulator.simulate()
 
 if __name__ == "__main__":
-    # outPath = 'seurat_pbmc/4000/10000'
-    # dataPath = 'seurat_pbmc/4000/10000/data'
+    outPath = 'seurat_pbmc/4000/10000'
+    dataPath = 'seurat_pbmc/4000/10000/data'
     # outPath = 'BBI/Intestine/others'
     # dataPath = 'BBI/Intestine/others/data'
-    outPath = 'E-MTAB_1/10000/HP1526901T2D/4000'
-    dataPath = 'E-MTAB_1/10000/HP1526901T2D/data'
+    # outPath = 'E-MTAB_1/10000/HP1526901T2D/4000'
+    # dataPath = 'E-MTAB_1/10000/HP1526901T2D/data'
     parser = argparse.ArgumentParser(
         description='Simulation of artificial bulk RNA-seq samples from scRNA-seq data for training or testing.')
     parser.add_argument('--out_path', type=str, default=outPath)

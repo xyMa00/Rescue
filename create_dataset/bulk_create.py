@@ -3,20 +3,16 @@ import glob
 import os
 import sys
 import gc
-
 import pandas as pd
 import anndata as ad
 import numpy as np
-
 from rich.progress import BarColumn, Progress
 
 logger = logging.getLogger(__name__)
 
 
-# 自定义排序键函数
 def sort_key(s):
     import re
-    # 分离字符串中的字母部分和数字部分
     match = re.match(r"([a-zA-Z]+)([0-9]+)", s)
     if match:
         letter_part = match.group(1)
@@ -36,16 +32,11 @@ def generate_numbers_with_fixed_sum(fixed_number, n, unk_num=-1):
     # Normalize the random numbers to sum to (1 - fixed_number)
     random_numbers = (random_numbers / random_sum) * (1 - fixed_number)
     # Combine the fixed number with the normalized random numbers
-    if unk_num>=0:
-        # 在第 unk_num 个位置插入数字，索引为 unk_num-1（0 基）
+    if unk_num >= 0:
         result = np.insert(random_numbers, unk_num-1, fixed_number)
     else:
         result = np.append(fixed_number, random_numbers)
-
     return result
-
-
-
 
 def create_fractions_unk(no_celltypes, count, n_samps=4000):
     """
@@ -53,9 +44,6 @@ def create_fractions_unk(no_celltypes, count, n_samps=4000):
     :param no_celltypes: number of fractions to create
     :return: list of random fractions of length no_celltypes
     """
-    # fracs = np.random.rand(no_celltypes)
-    # fracs_sum = np.sum(fracs)
-    # fracs = np.divide(fracs, fracs_sum)
 
     if no_celltypes == 1:
         fixed_number = 1
@@ -69,7 +57,6 @@ def create_fractions_unk(no_celltypes, count, n_samps=4000):
         # Example usage
         # fixed_number = lie1
 
-    # # # # # # 指定占比
     # fixed_number = 0.3
     # # fixed_number = np.random.uniform(0.5, 1)
     # print(fixed_number)
@@ -380,7 +367,6 @@ class BulkCreate(object):
             # Create sparase samples
             for i in range(self.num_samples):
                 progress_bar.update(sparse_samples_progress, advance=1, samples=i + 1)
-                # sample, label = self.create_subsample(x, y, celltypes, sparse=True)
                 sample, label = self.create_subsample(x, y, celltypes, sparse=True, samp=n_sam, count=i + 1)
                 sim_x.append(sample)
                 sim_y.append(label)
@@ -404,7 +390,6 @@ class BulkCreate(object):
         available_celltypes = celltypes
         if sparse:
             no_keep = np.random.randint(1, len(available_celltypes))
-            # no_keep = np.random.randint(1, len(available_celltypes)+1)
             keep = np.random.choice(
                 list(range(len(available_celltypes))), size=no_keep, replace=False
             )
@@ -429,9 +414,7 @@ class BulkCreate(object):
         artificial_samples = []
         for i in range(no_avail_cts):
             ct = available_celltypes[i]
-            # 从数据框 x 中筛选出细胞类型为 ct 的所有行
             cells_sub = x.loc[np.array(y["Celltype"] == ct), :]
-            # 随机选择一些行的索引，数量由 samp_fracs[i] 决定，这个数量代表需要抽取的样本比例。
             cells_fraction = np.random.randint(0, cells_sub.shape[0], samp_fracs[i])
             cells_sub = cells_sub.iloc[cells_fraction, :]
             artificial_samples.append(cells_sub)

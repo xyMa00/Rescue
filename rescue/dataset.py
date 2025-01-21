@@ -3,19 +3,15 @@ import numpy as np
 import pandas as pd
 import scipy
 from scipy.sparse import issparse
-import torch
 from torch.utils.data import Dataset
-from torch.utils.data.sampler import Sampler
 from torch.utils.data import DataLoader
 from anndata import AnnData
 import scanpy as sc
-from sklearn.preprocessing import maxabs_scale, MaxAbsScaler
 from glob import glob
 import warnings
 warnings.filterwarnings('ignore', category=Warning)
-import episcanpy.api as epi
 
-# DATA_PATH = os.path.expanduser("~")+'/.scalex/'
+
 DATA_PATH = os.path.expanduser("~")
 CHUNK_SIZE = 20000
 
@@ -43,7 +39,6 @@ def read_mtx(path):
             adata.var = pd.DataFrame(index=gene)
     return adata
 
-
 def load_file(path):  
     """
     Load single cell dataset from file
@@ -65,12 +60,10 @@ def load_file(path):
         adata = mu.read(path)
     else:
         raise ValueError("File {} not exists".format(path))
-        
     if not issparse(adata.X):
         adata.X = scipy.sparse.csr_matrix(adata.X)
     adata.var_names_make_unique()
     return adata
-
 
 def load_files(root):
     """
@@ -83,8 +76,7 @@ def load_files(root):
         return AnnData.concatenate(*adata, batch_key='sub_batch', index_unique=None)
     else:
         return load_file(root)
-    
-    
+
 def concat_data(
         data_list, 
         batch_categories=None, 
@@ -115,89 +107,7 @@ def concat_data(
     if save:
         concat.write(save, compression='gzip')
     return concat
-        
-    
-def preprocessing_atac(
-        adata, 
-        min_genes=200, 
-        min_cells=0.01, 
-        n_top_genes=30000,
-        target_sum=None,
-        chunk_size=CHUNK_SIZE,
-        log=None
-    ):
-    """
-    preprocessing
-    """
-    print('Raw dataset shape: {}'.format(adata.shape))
-    if log: log.info('Preprocessing')
-    if not issparse(adata.X):
-        adata.X = scipy.sparse.csr_matrix(adata.X)
-        
-    adata.X[adata.X>1] = 1
-    
-    if log: log.info('Filtering cells')
-    sc.pp.filter_cells(adata, min_genes=min_genes)
-    
-    if log: log.info('Filtering genes')
-    if min_cells < 1:
-        min_cells = min_cells * adata.shape[0]
-    sc.pp.filter_genes(adata, min_cells=min_cells)
-    
-    if n_top_genes != -1:
-        if log: log.info('Finding variable features')
-        sc.pp.highly_variable_genes(adata, n_top_genes=n_top_genes, inplace=False, subset=True)
-    if log: log.info('Batch specific maxabs scaling')
-    print('Processed dataset shape: {}'.format(adata.shape))
-    return adata
 
-
-def preprocessing_atac_n(
-        adata,
-        min_genes=200,
-        min_cells=0.01,
-        n_top_genes=30000,
-        target_sum=None,
-        chunk_size=CHUNK_SIZE,
-        log=None
-):
-    """
-    preprocessing
-    """
-    # print('Raw dataset shape: {}'.format(adata.shape))
-    if log: log.info('Preprocessing')
-    if not issparse(adata.X):
-        adata.X = scipy.sparse.csr_matrix(adata.X)
-    adata.X[adata.X > 1] = 1
-    if log: log.info('Batch specific maxabs scaling')
-    print('Processed dataset shape: {}'.format(adata.shape))
-    return adata
-
-def batch_scale(adata, chunk_size=CHUNK_SIZE):
-    """
-    Batch-specific scale data
-    """
-    for b in adata.obs['batch'].unique():
-        idx = np.where(adata.obs['batch']==b)[0]
-        scaler = MaxAbsScaler(copy=False).fit(adata.X[idx])
-        for i in range(len(idx)//chunk_size+1):
-            adata.X[idx[i*chunk_size:(i+1)*chunk_size]] = scaler.transform(adata.X[idx[i*chunk_size:(i+1)*chunk_size]])
-
-    return adata
-        
-
-def reindex(adata, genes):
-    """
-    Reindex AnnData with gene list
-    """
-    idx = [i for i, g in enumerate(genes) if g in adata.var_names]
-    print('There are {} gene in selected genes'.format(len(idx)))
-    new_X = scipy.sparse.csr_matrix((adata.shape[0], len(genes)))
-    new_X[:, idx] = adata[:, genes[idx]].X
-    adata = AnnData(new_X, obs=adata.obs, var={'var_names':genes}) 
-    return adata
-        
-    
 class SingleCellDataset(Dataset):
     """
     Dataset for dataloader
@@ -205,8 +115,7 @@ class SingleCellDataset(Dataset):
     def __init__(self, adata, k):
         self.adata = adata
         self.shape = adata.shape
-
-        self.k = k  # 要保留的前 k 列
+        self.k = k
         
     def __len__(self):
         return self.adata.X.shape[0]
@@ -216,7 +125,7 @@ class SingleCellDataset(Dataset):
         label = self.adata.obs.iloc[idx, :self.k].values.astype(np.float32)
         return x, label
 
-def load_dataset_c(
+def load_dataset_train(
         k,
         data_list,
         test_list,
@@ -224,13 +133,8 @@ def load_dataset_c(
         join='inner',
         batch_key='batch',
         batch_name='batch',
-        min_genes=600,
-        min_cells=0.01,
-        n_top_genes=30000,
         batch_size=64,
-        chunk_size=CHUNK_SIZE,
         log=None,
-        transpose=False,
 ):
     """
     Load dataset with preprocessing
@@ -260,19 +164,13 @@ def load_dataset_c(
 
 def load_dataset_test(
         k,
-        data_list,
         test_list,
         batch_categories=None,
         join='inner',
         batch_key='batch',
         batch_name='batch',
-        min_genes=600,
-        min_cells=0.01,
-        n_top_genes=30000,
         batch_size=64,
-        chunk_size=CHUNK_SIZE,
         log=None,
-        transpose=False,
 ):
     """
     Load dataset with preprocessing
