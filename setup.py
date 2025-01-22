@@ -7,7 +7,7 @@ with open('requirements.txt') as f:
     requirements = f.read().splitlines()
 
 setup(name='rescue_dec',
-      version='1.0.0',
+      version='1.0.1',
       packages=find_packages(),
       description='Resnet model employing scRNA-seq for characterizing cell composition by using expression of whole genome.',
       long_description='',
@@ -17,7 +17,7 @@ setup(name='rescue_dec',
       url='https://github.com/xyMa00/Rescue.git',
       scripts=['Rescue.py'],
       install_requires=requirements,
-      python_requires='>3.8.18',
+      python_requires='>3.8.0',
       license='MIT',
 
       classifiers=[
