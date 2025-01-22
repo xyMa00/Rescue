@@ -8,7 +8,8 @@ sc.settings.autoshow = False
 from anndata import AnnData
 from typing import Union, List
 from .ResNetAE_pytorch import ResNet_pred
-from labels_statistic import *
+# from labels_statistic import *
+import math
 
 
 def some_function(

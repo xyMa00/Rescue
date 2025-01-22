@@ -164,6 +164,7 @@ def load_dataset_train(
 
 def load_dataset_test(
         k,
+        data_list,
         test_list,
         batch_categories=None,
         join='inner',

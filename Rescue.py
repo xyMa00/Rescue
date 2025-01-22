@@ -12,8 +12,6 @@ from rescue import some_function
 
 
 
-
-
 dataPath = 'seurat_pbmc/4000/10000/train/pbmc3k_9_10000_4000.h5ad'
 testPath = 'seurat_pbmc/4000/10000/test/pbmc3k_9_10000_1000.h5ad'
 modelPath = 'pre/model_pbmc3k_9_10000_4000.pt'
