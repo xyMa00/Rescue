@@ -10,14 +10,14 @@ Running Rescue on CUDA is recommended if available.
 
 #### Install from PyPI
 
-    pip install Rescue
+    pip install rescue_dec
 
 #### Install latest develop version from GitHub
     https://github.com/xyMa00/Rescue.git
 or download and install
 
 	git clone git@github.com:xyMa00/Rescue.git
-	cd Ressac
+	cd Rescue
 	python setup.py install
     
 Installation only requires a few minutes. 

@@ -8,7 +8,7 @@
 """
 
 import argparse
-from rescue import some_function
+from rescue_dec import some_function
 
 
 

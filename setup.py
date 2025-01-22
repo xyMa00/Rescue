@@ -1,18 +1,16 @@
 """
 # File Name: setup.py
-# Description:
 """
 from setuptools import setup, find_packages
 
 with open('requirements.txt') as f:
     requirements = f.read().splitlines()
 
-setup(name='rescue',
+setup(name='rescue_dec',
       version='1.0.0',
       packages=find_packages(),
-      description='Resnet model employing scRNA-seq for characterizing cell composition by using expression of whole genome',
+      description='Resnet model employing scRNA-seq for characterizing cell composition by using expression of whole genome.',
       long_description='',
-
 
       author='mxy',
       author_email='xyMa00@126.com',
@@ -30,5 +28,5 @@ setup(name='rescue',
           'Operating System :: Microsoft :: Windows',
           'Operating System :: POSIX :: Linux',
           'Topic :: Scientific/Engineering :: Bio-Informatics',
-     ],
-     )
+      ],
+      )
