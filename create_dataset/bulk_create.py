@@ -20,6 +20,7 @@ def sort_key(s):
         return (letter_part, number_part)
     return (s, 0)
 
+
 def generate_numbers_with_fixed_sum(fixed_number, n, unk_num=-1):
     if fixed_number < 0 or fixed_number > 1:
         raise ValueError("The fixed number must be between 0 and 1.")
@@ -33,18 +34,13 @@ def generate_numbers_with_fixed_sum(fixed_number, n, unk_num=-1):
     random_numbers = (random_numbers / random_sum) * (1 - fixed_number)
     # Combine the fixed number with the normalized random numbers
     if unk_num >= 0:
-        result = np.insert(random_numbers, unk_num-1, fixed_number)
+        result = np.insert(random_numbers, unk_num - 1, fixed_number)
     else:
         result = np.append(fixed_number, random_numbers)
     return result
 
-def create_fractions_unk(no_celltypes, count, n_samps=4000):
-    """
-    Create random fractions
-    :param no_celltypes: number of fractions to create
-    :return: list of random fractions of length no_celltypes
-    """
 
+def create_fractions_unk(no_celltypes, count, n_samps=4000):
     if no_celltypes == 1:
         fixed_number = 1
     else:
@@ -68,13 +64,9 @@ def create_fractions_unk(no_celltypes, count, n_samps=4000):
     print("Sum of numbers:", np.sum(fracs))
 
     return fracs
-def create_fractions(no_celltypes, count, n_samps=2000):
-    """
-    Create random fractions
-    :param no_celltypes: number of fractions to create
-    :return: list of random fractions of length no_celltypes
-    """
-    # # # # # 指定占比
+
+
+def create_fractions_s(no_celltypes, count, n_samps=2000):
     # fixed_number = np.random.uniform(0, 0.1)
     # # fixed_number = np.random.uniform(0.5, 1)
     # print(fixed_number)
@@ -85,46 +77,35 @@ def create_fractions(no_celltypes, count, n_samps=2000):
     # print("Numbers:", fracs)
     # print("Sum of numbers:", np.sum(fracs))
 
-    # # # # 指定占比
     # if count <= 0.1*n_samps:
     #     fixed_number = np.random.uniform(0, 0.1)
     # if 0.1*n_samps< count <= 0.2 * n_samps:
     #     fixed_number = np.random.uniform(0.1, 0.2)
     # fixed_number=0
 
-    if no_celltypes==1:
+    if no_celltypes == 1:
         fixed_number = 1
     else:
         for i in range(1, 11):
             if (i - 1) * 0.1 * n_samps < count <= i * 0.1 * n_samps:
                 fixed_number = np.random.uniform((i - 1) * 0.1, i * 0.1)
                 break
-        # fixed_number = np.random.uniform(0.5, 1)
         print(fixed_number)
-        # Example usage
-        # fixed_number = lie1
     n = no_celltypes  # Total number of elements
     fracs = generate_numbers_with_fixed_sum(fixed_number, n)
     print("Numbers:", fracs)
     print("Sum of numbers:", np.sum(fracs))
     return fracs
 
-def create_fractions_2(no_celltypes, count, n_samps=2000):
-    """
-    Create random fractions
-    :param no_celltypes: number of fractions to create
-    :return: list of random fractions of length no_celltypes
-    """
+
+def create_fractions_n(no_celltypes, count, n_samps=2000):
     for i in range(1, 11):
         if (i - 1) * 0.1 * n_samps < count <= i * 0.1 * n_samps:
             fixed_number = np.random.uniform((i - 1) * 0.1, i * 0.1)
             break
-    # fixed_number = np.random.uniform(0.5, 1)
     print(fixed_number)
-    # Example usage
-    # fixed_number = lie1
     n = no_celltypes  # Total number of elements
-    pos = count%no_celltypes+1
+    pos = count % no_celltypes + 1
     print('pos:', pos)
     fracs = generate_numbers_with_fixed_sum(fixed_number, n, pos)
     print("Numbers:", fracs)
@@ -133,35 +114,21 @@ def create_fractions_2(no_celltypes, count, n_samps=2000):
 
 
 class BulkCreate(object):
-    """
-    BulkSimulator class for the simulation of artificial bulk samples
-    from scRNA-seq datasets
-
-    :param sample_size: number of cells per sample
-    :param num_samples: number of sample to simulate
-    :param data_path: path to the data directory
-    :param out_dir: output directory
-    :param pattern of the data files
-    :param unknown_celltypes: which celltypes to merge into the unknown class
-    :param fmt: the format of the input files, can be txt or h5ad
-    """
-
     def __init__(
-        self,
-        sample_size=100,
-        num_samples=1000,
-        data_path="./",
-        out_dir="./",
-        pattern="*_counts.txt",
-        unknown_celltypes=None,
-        fmt="txt",
+            self,
+            sample_size=500,
+            num_samples=2000,
+            data_path="./",
+            out_dir="./",
+            pattern="*_counts.txt",
+            unknown_celltypes=None,
+            fmt="txt",
     ):
         if unknown_celltypes is None:
             unknown_celltypes = ["unknown"]
 
         self.sample_size = sample_size
         self.num_samples = num_samples // 2
-        # self.num_samples = num_samples
         self.data_path = data_path
         self.out_dir = out_dir
         self.pattern = pattern
@@ -171,7 +138,6 @@ class BulkCreate(object):
         self.dataset_files = []
 
     def simulate(self):
-        """simulate artificial bulk datasets"""
         # List available datasets
         if not self.data_path.endswith("/"):
             self.data_path += "/"
@@ -199,14 +165,6 @@ class BulkCreate(object):
         logger.info("[bold green]Finished data simulation!")
 
     def simulate_dataset(self, dataset):
-        """
-        Simulate bulk data from a single scRNA-seq dataset
-        @param dataset:
-        @type dataset:
-        @return:
-        @rtype:
-        """
-
         # load the dataset
         data_x, data_y = self.load_dataset(dataset)
 
@@ -236,18 +194,10 @@ class BulkCreate(object):
         )
         ann_data.uns["unknown"] = self.unknown_celltypes
         ann_data.uns["cell_types"] = celltypes
-
-        # ann_data.write(os.path.join(self.out_dir, dataset + ".h5ad"))
-        ann_data.write(os.path.join(self.out_dir, dataset + ".h5ad"), compression='gzip')
+        h5ad_name = dataset + "_" + str(2 * self.num_samples) + ".h5ad"
+        ann_data.write(os.path.join(self.out_dir, h5ad_name), compression='gzip')
 
     def load_dataset(self, dataset):
-        """
-        Load a dataset
-        @param dataset:
-        @type dataset:
-        @return:
-        @rtype:
-        """
         pattern = self.pattern.replace("*", "")
         logger.info(f"Loading [cyan]{dataset}[/] dataset ...")
         dataset_counts = dataset + pattern
@@ -320,11 +270,6 @@ class BulkCreate(object):
         return x, y
 
     def merge_unknown_celltypes(self, y):
-        """
-        Merge all unknown celltypes together
-        :param y: list of cell type labels
-        :return: list of cell types with unknown cell types merged into "Unknown" type
-        """
         celltypes = list(y["Celltype"])
         new_celltypes = [
             "Unknown" if x in self.unknown_celltypes else x for x in celltypes
@@ -333,14 +278,6 @@ class BulkCreate(object):
         return y
 
     def create_subsample_dataset(self, x, y, celltypes):
-        """
-        Generate many artifial bulk samples with known fractions
-        This function will create normal and sparse samples (no_samples)
-        @param x:
-        @param y:
-        @param celltypes:
-        @return:
-        """
         sim_x = []
         sim_y = []
 
@@ -361,7 +298,7 @@ class BulkCreate(object):
             for i in range(self.num_samples):
                 progress_bar.update(normal_samples_progress, advance=1, samples=i + 1)
                 # print(i)
-                sample, label = self.create_subsample(x, y, celltypes, sparse=False, samp = n_sam, count=i+1)
+                sample, label = self.create_subsample(x, y, celltypes, sparse=False, samp=n_sam, count=i + 1)
                 sim_x.append(sample)
                 sim_y.append(label)
             # Create sparase samples
@@ -376,17 +313,7 @@ class BulkCreate(object):
 
         return sim_x, sim_y
 
-    def create_subsample(self, x, y, celltypes, sparse=False, samp = 2000, count=0):
-        """
-        Generate artifical bulk subsample with random fractions of celltypes
-        If sparse is set to true, add random celltypes to the missing celltypes
-
-        @param x:
-        @param y:
-        @param celltypes:
-        @param sparse:
-        @return:
-        """
+    def create_subsample(self, x, y, celltypes, sparse=False, samp=2000, count=0):
         available_celltypes = celltypes
         if sparse:
             no_keep = np.random.randint(1, len(available_celltypes))
@@ -396,12 +323,11 @@ class BulkCreate(object):
             available_celltypes = [available_celltypes[i] for i in keep]
 
             no_avail_cts = len(available_celltypes)
-            fracs = create_fractions(no_celltypes=no_avail_cts, count=count, n_samps=samp)
+            fracs = create_fractions_s(no_celltypes=no_avail_cts, count=count, n_samps=samp)
         else:
-            # print(available_celltypes)
             no_avail_cts = len(available_celltypes)
             # Create fractions for available celltypes
-            fracs = create_fractions_2(no_celltypes=no_avail_cts, count=count, n_samps=samp)
+            fracs = create_fractions_n(no_celltypes=no_avail_cts, count=count, n_samps=samp)
         samp_fracs = np.multiply(fracs, self.sample_size)
         samp_fracs = list(map(int, samp_fracs))
 
@@ -422,16 +348,8 @@ class BulkCreate(object):
         df_samp = df_samp.sum(axis=0)
         return df_samp, fracs_complete
 
-
     @staticmethod
     def merge_datasets(data_dir="./", files=None, out_name="data.h5ad"):
-        """
-
-        @param out_name: name of the merged .h5ad file
-        @param data_dir: directory to look for datasets
-        @param files: list of files to merge
-        @return:
-        """
         non_celltype_obs = ["ds", "batch"]
         if not files:
             files = glob.glob(os.path.join(data_dir, "*.h5ad"))
