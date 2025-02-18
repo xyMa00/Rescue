@@ -80,4 +80,4 @@ Use functions in Rescue packages.
 ## Tutorial
 **[Tutorial PBMC(3k)](https://github.com/xyMa00/Rescue/wiki/PBMC)**   :Run Rescue on scRNA-seq **PBMC(3k)** dataset (k=9, 2638 cells, 13714 genes)\
 **[Tutorial Intestine](https://github.com/xyMa00/Rescue/wiki/Intestine)**   :Run Rescue on scRNA-seq **Intestine** dataset (k=8, 48055 cells, 2500 genes)\
-**[Tutorial Mouse](https://github.com/xyMa00/Rescue/wiki/Mouse)**   :Run Rescue on scRNA-seq **Mouse** dataset (k=13, 9897 cells, 16129 genes)
+**[Tutorial Mouse_kidney](https://github.com/xyMa00/Rescue/wiki/Mouse_kidney)**   :Run Rescue on scRNA-seq **Mouse_kidney** dataset (k=13, 9897 cells, 16129 genes)
