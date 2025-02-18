@@ -1,6 +1,6 @@
 """
 # File Name: Rescue.py
-# Description: Resnet model employing scRNA-seq for characterizing cell composition by using expression of whole genome.
+# Description: An attention-driven deep learning framework for cell type deconvolution in bulk RNA-seq.
     Input: 
         bulk RNA-seq data.
     Output:

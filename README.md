@@ -1,6 +1,6 @@
-# Rescue: Resnet model employing scRNA-seq for characterizing cell composition by using expression of whole genome
+# Rescue: An attention-driven deep learning framework for cell type deconvolution in bulk RNA-seq
 
-<!--#![](https://github.com/xyMa00/Rescue/wiki/png/Rescue_model.png)-->
+
 ![](https://github.com/xyMa00/Rescue/wiki/png/Rescue_model.png)
 
 ## Installation  
@@ -24,7 +24,7 @@ Installation only requires a few minutes.
 
  #### Simulation of bulk RNA-seq samples from scRNA-seq data 
 
-    python create_dataset.py --out_path seurat_pbmc/4000/10000 --data_path seurat_pbmc/4000/10000/data --sample_num 4000
+    python create_dataset.py --out_path seurat_pbmc/10000 --data_path seurat_pbmc/10000/data --sample_num 4000
 You need two .txt files about scRNA-seq data: *_celltypes.txt and _counts.txt.
 (The _celltypes.txt file contains the 'Celltype' column.)
 
@@ -42,7 +42,7 @@ Using PBMC(3k) data as an example.\
 
 #### Run to train the model
 
-    python Rescue.py --dataPath seurat_pbmc/4000/10000/train/pbmc3k_9_10000_4000.h5ad --testPath seurat_pbmc/4000/10000/test/pbmc3k_9_10000_1000.h5ad
+    python Rescue.py --dataPath seurat_pbmc/10000/train/pbmc3k_9_10000_4000.h5ad --testPath seurat_pbmc/10000/test/pbmc3k_9_10000_1000.h5ad
 
 #### Output
 Output will be saved in the output folder including:
@@ -51,7 +51,7 @@ Output will be saved in the output folder including:
 
 #### Run to predict
 
-    python Rescue.py --dataPath seurat_pbmc/4000/10000/train/pbmc3k_9_10000_4000.h5ad --testPath seurat_pbmc/4000/10000/test/pbmc3k_9_10000_1000.h5ad --modelPath pre/model_pbmc3k_9_10000_4000.pt --pretrain
+    python Rescue.py --dataPath seurat_pbmc/10000/train/pbmc3k_9_10000_4000.h5ad --testPath seurat_pbmc/10000/test/pbmc3k_9_10000_1000.h5ad --modelPath pre/model_pbmc3k_9_10000_4000.pt --pretrain
 
 #### Correlation parameters 
 * --dataPath:the path of the training dataset.
